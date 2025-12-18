@@ -12,37 +12,46 @@ class Homepage extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            margin: EdgeInsets.only(top: 60, left: 40),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "For the love of",
-                  style: GoogleFonts.poppins(
-                    fontSize: 42,
-                    fontWeight: FontWeight.w700,
-                    letterSpacing: -1,
-                    height: 1.2,
-                    color: Colors.white,
-                  ),
-                ),
-                Text(
-                  "human creativity",
-                  style: GoogleFonts.poppins(
-                    fontSize: 42,
-                    fontWeight: FontWeight.w700,
-                    letterSpacing: -1,
-                    height: 1.2,
-                    color: const Color(0xFF7A88F2),
-                  ),
-                ),
-              ],
-            ),
-          ), //Header
+          TextHeader(),
           Searchbar(),
         ],
-      ) //Body 
+      ),
+    );
+  }
+}
+
+class TextHeader extends StatelessWidget {
+  const TextHeader({super.key});
+  
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(top: 60, left: 40),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "For the love of",
+            style: GoogleFonts.poppins(
+              fontSize: 42,
+              fontWeight: FontWeight.w700,
+              letterSpacing: -1,
+              height: 1.2,
+              color: Colors.white,
+            ),
+          ),
+          Text(
+            "human creativity",
+            style: GoogleFonts.poppins(
+              fontSize: 42,
+              fontWeight: FontWeight.w700,
+              letterSpacing: -1,
+              height: 1.2,
+              color: const Color(0xFF7A88F2),
+            ),
+          ),
+        ],
+      )
     );
   }
 }
