@@ -23,6 +23,13 @@ class Searchbar extends StatelessWidget {
             color: const Color(0xFFC5C2D2),
           ),
         ),
+        textStyle: MaterialStateProperty.all(
+          GoogleFonts.poppins(
+            fontSize: 22,
+            fontWeight: FontWeight.w300,
+            color: Colors.white,
+          ),
+        ),
         backgroundColor: WidgetStateProperty.all(const Color(0xFF383843)),
         elevation: WidgetStateProperty.all(0),
         padding: WidgetStatePropertyAll(
