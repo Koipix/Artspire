@@ -1,11 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:flutter_svg/svg.dart';
 
 class NavBar extends StatelessWidget {
   const NavBar({super.key});
 
+  static const _routes = [
+    '/home',
+    '/search',
+  ];
+
+  int _locationIndex(String location) {
+    final index = _routes.indexWhere(
+      (r) => location.startsWith(r),
+    );
+    return index < 0 ? 0 : index;
+  }
+
   @override
   Widget build(BuildContext context) {
+    final location = GoRouterState.of(context).uri.toString();
+
     return Container(
       decoration: const BoxDecoration(
         border: Border(
@@ -16,6 +31,10 @@ class NavBar extends StatelessWidget {
         )
       ),
       child: NavigationBar(
+        selectedIndex: _locationIndex(location),
+        onDestinationSelected: (index) {
+          context.go(_routes[index]);
+        },
         destinations: [
           NavigationDestination(
             icon: SvgPicture.asset(

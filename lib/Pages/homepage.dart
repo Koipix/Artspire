@@ -1,28 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:artspire/models/searcbar.dart';
 import 'package:artspire/models/popular_section.dart';
 import 'package:artspire/models/service_section.dart';
-import 'package:artspire/models/navbar.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class Homepage extends StatelessWidget {
-  const Homepage({super.key});
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF21212e),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          TextHeader(),
-          Searchbar(),
-          PopularSection(),
-          ServiceSection(),
-        ],
-      ),
-      bottomNavigationBar: NavBar(), 
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TextHeader(),
+        Searchbar(),
+        PopularSection(),
+        ServiceSection(),
+      ],
     );
   }
 }
