@@ -7,6 +7,7 @@ class ServiceSection extends StatelessWidget {
   //mock data declaration for layout testing
   static const List<String> tags = ["Live2D Model", "Special Portraits", "Headshots"];
   static const List<String> price = ["₱3,000", "₱2,000", "₱5,000"];
+  static const List<String> pImgPath = ["assets/img/l2d.png", "assets/img/portrait.png", "assets/img/head.png"];
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,7 @@ class ServiceSection extends StatelessWidget {
                 ),
               ),
             ], 
-          ), //Popular Heading
+          ), //Services Heading
           Container(
             margin: EdgeInsets.only(top: 15),
             height: 250,
@@ -56,8 +57,32 @@ class ServiceSection extends StatelessWidget {
                         width: 150,
                         height: 160,
                         decoration: BoxDecoration(
-                          color: Colors.white,
                           borderRadius: BorderRadius.circular(12),
+                        ),
+                        clipBehavior: Clip.antiAlias,
+                        child: Stack(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage(pImgPath[index]),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ), //Img 
+                            Container(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.bottomCenter,
+                                  end: Alignment.topCenter,
+                                  colors: [
+                                    Colors.black.withValues(alpha: 140),
+                                    Colors.transparent,
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       Text(
