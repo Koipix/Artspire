@@ -34,6 +34,11 @@ class NavBar extends StatelessWidget {
         )
       ),
       child: NavigationBar(
+        labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+        backgroundColor: const Color(0xFF21212e),
+        indicatorColor: Colors.transparent,
+        overlayColor: WidgetStatePropertyAll(Colors.transparent),
+        height: 70,
         selectedIndex: _locationIndex(location),
         onDestinationSelected: (index) {
           context.go(_routes[index]);
@@ -80,10 +85,6 @@ class NavBar extends StatelessWidget {
             label: "uwu",
           ),
         ],
-        labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-        backgroundColor: const Color(0xFF21212e),
-        indicatorColor: Colors.transparent,
-        height: 70,
       )
     );
   }
