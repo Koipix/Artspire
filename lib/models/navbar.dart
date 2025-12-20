@@ -8,6 +8,9 @@ class NavBar extends StatelessWidget {
   static const _routes = [
     '/home',
     '/search',
+    '/add',
+    '/notification',
+    '/profile',
   ];
 
   int _locationIndex(String location) {

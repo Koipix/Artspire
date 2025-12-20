@@ -1,3 +1,6 @@
+import 'package:artspire/Pages/addpage.dart';
+import 'package:artspire/Pages/notificationpage.dart';
+import 'package:artspire/Pages/profilepage.dart';
 import 'package:artspire/Pages/shellpage.dart';
 import 'package:artspire/Pages/homepage.dart';
 import 'package:artspire/Pages/searchpage.dart';
@@ -19,6 +22,24 @@ final router = GoRouter(
           path: '/search',
           pageBuilder: (context, state) => NoTransitionPage(
             child: SearchPage(),
+          ),
+        ),
+        GoRoute(
+          path: '/notification',
+          pageBuilder: (context, state) => NoTransitionPage(
+            child: NotificationPage(),
+          ),
+        ),
+        GoRoute(
+          path: '/profile',
+          pageBuilder: (context, state) => NoTransitionPage(
+            child: ProfilePage(),
+          ),
+        ),
+        GoRoute(
+          path: '/add',
+          pageBuilder: (context, state) => NoTransitionPage(
+            child: AddPage(),
           ),
         ),
       ], 
