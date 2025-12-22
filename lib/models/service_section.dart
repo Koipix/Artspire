@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:artspire/cards/service_card.dart';
 
 class ServiceSection extends StatelessWidget {
   const ServiceSection({super.key});
@@ -47,77 +48,11 @@ class ServiceSection extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: tags.length, 
               itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  width: 150,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(bottom: 10),
-                        width: 150,
-                        height: 160,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        clipBehavior: Clip.antiAlias,
-                        child: Stack(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage(pImgPath[index]),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ), //Img 
-                            Container(
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  begin: Alignment.bottomCenter,
-                                  end: Alignment.topCenter,
-                                  colors: [
-                                    Colors.black.withValues(alpha: 140),
-                                    Colors.transparent,
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Text(
-                        tags[index],
-                        style: GoogleFonts.poppins(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 0.2,
-                          height: 1.2,
-                          color: Colors.white,
-                        ),
-                      ),
-                      Text(
-                        "Starting from",
-                        style: GoogleFonts.poppins(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          letterSpacing: 0.2,
-                          height: 1.7,
-                          color: const Color(0xFFC5C2D2),
-                        ),
-                      ),
-                      Text(
-                        "${price[index]}+",
-                        style: GoogleFonts.poppins(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 0.2,
-                          height: 1.5,
-                          color: Colors.white, 
-                        ),
-                      ),
-                    ],
-                  ),
-                ); //Servies Card
+                return ServiceCard(
+                  imgPath: pImgPath[index], 
+                  tagName: tags[index],
+                  price: price[index]
+                );
               },
               separatorBuilder: (context, index) {
                 return const SizedBox(width: 18);
