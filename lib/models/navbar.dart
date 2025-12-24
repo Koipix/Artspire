@@ -70,7 +70,7 @@ class NavBar extends StatelessWidget {
           ),
           NavigationDestination(
             icon: SvgPicture.asset(
-              "assets/icons/Bell.svg",
+              "assets/icons/msg.svg",
               height: 25,
               width: 25,
             ), 

@@ -1,5 +1,5 @@
 import 'package:artspire/Pages/addpage.dart';
-import 'package:artspire/Pages/notificationpage.dart';
+import 'package:artspire/Pages/messagespage.dart';
 import 'package:artspire/Pages/profilepage.dart';
 import 'package:artspire/Pages/shellpage.dart';
 import 'package:artspire/Pages/homepage.dart';
@@ -27,7 +27,7 @@ final router = GoRouter(
         GoRoute(
           path: '/notification',
           pageBuilder: (context, state) => NoTransitionPage(
-            child: NotificationPage(),
+            child: MessagesPage(),
           ),
         ),
         GoRoute(
