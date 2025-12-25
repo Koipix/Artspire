@@ -1,4 +1,5 @@
 import 'package:artspire/models/searcbar.dart';
+import 'package:artspire/models/search_section.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -13,6 +14,7 @@ class SearchPage extends StatelessWidget {
         PageHeader(),
         Searchbar(),
         CategoryTabs(),
+        SearchSection(),
       ], 
     );
   }
@@ -60,8 +62,8 @@ class CategoryTabs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 20, left: 25, right: 25, bottom: 5),
-      height: 50,
+      margin: EdgeInsets.only(top: 20, left: 25, right: 25),
+      height: 35,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: categoryTabs.length, 
