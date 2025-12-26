@@ -6,24 +6,26 @@ class SearchSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 520,
-      margin: EdgeInsets.symmetric(horizontal: 20),
-      child: ListView.separated(
-        itemCount: 3, //hardcoded data, change later
-        itemBuilder: (BuildContext context, int index) {
-          return SearchCard(
-            artistName:"梅原生（せい）", 
-            serviceName: 'Full Illustration', 
-            price: "₱2,055.90", 
-            imgPath: "assets/img/sei.png",
-            isNewOffer: true, 
-          );
-        }, 
-        separatorBuilder: (context, index) {
-          return const SizedBox(height: 15);
-        }
+    return Expanded(
+      child: Container(
+        height: 520,
+        margin: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        child: ListView.separated(
+          itemCount: 3, //hardcoded data, change later
+          itemBuilder: (BuildContext context, int index) {
+            return SearchCard(
+              artistName:"梅原生（せい）", 
+              serviceName: 'Full Illustration', 
+              price: "₱2,055.90", 
+              imgPath: "assets/img/sei.png",
+              isNewOffer: true, 
+            );
+          }, 
+          separatorBuilder: (context, index) {
+            return const SizedBox(height: 15);
+          }
+        ),
       ),
-    );  
+    );
   }
 }

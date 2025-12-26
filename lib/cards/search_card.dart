@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -22,83 +21,86 @@ class SearchCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 15, left: 15, right: 15),
+      padding: EdgeInsets.only(top: 15, left: 15, right: 15, bottom: 10),
       decoration: BoxDecoration(
         color: const Color(0xFF343552),
         borderRadius: BorderRadius.circular(10),
       ),
-      height: 252,
       clipBehavior: Clip.antiAlias,
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            margin: EdgeInsets.only(bottom: 10),
-            height: 165,
-            width: double.infinity,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(6),
-              image: DecorationImage(
-                image: AssetImage(imgPath),
-                fit: BoxFit.cover
-              ), 
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFFF5959),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: Text(
-                    "New Offer",
-                    style: GoogleFonts.poppins(
-                      fontSize: 12,
-                      fontWeight: FontWeight.normal,
-                      letterSpacing: 1.2,
-                      color: Colors.white,
+          AspectRatio(
+            aspectRatio: 16 / 9,
+            child: Container(
+              margin: EdgeInsets.only(bottom: 15),
+              width: double.infinity,
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(6),
+                image: DecorationImage(
+                  image: AssetImage(imgPath),
+                  fit: BoxFit.cover
+                ), 
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFFF5959),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Text(
+                      "New Offer",
+                      style: GoogleFonts.poppins(
+                        fontSize: 12,
+                        fontWeight: FontWeight.normal,
+                        letterSpacing: 1.2,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                ),
-                ClipRect(
-                  child: BackdropFilter( //controls blur effect to container's boundary
-                    filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                      decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.5), 
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: Text(
-                        "梅原生（せい）",
-                        style: GoogleFonts.poppins(
-                          fontSize: 12,
-                          fontWeight: FontWeight.normal,
-                          letterSpacing: 1.2,
-                          color: Colors.white,
+                  ClipRect(
+                    child: BackdropFilter( //controls blur effect to container's boundary
+                      filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0.5), 
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: Text(
+                          "梅原生（せい）",
+                          style: GoogleFonts.poppins(
+                            fontSize: 12,
+                            fontWeight: FontWeight.normal,
+                            letterSpacing: 1.2,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ), 
-              ],
-            ),
-          ), //Image Header
+                  ), 
+                ],
+              ),
+            ), //Image Header
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     serviceName,
                     style: GoogleFonts.poppins(
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.w500,
                       letterSpacing: 1,
                       color: Colors.white,
@@ -108,7 +110,6 @@ class SearchCard extends StatelessWidget {
                     price,
                     style: GoogleFonts.poppins(
                       fontSize: 12,
-                      height: 2.5,
                       fontWeight: FontWeight.w500,
                       color: Colors.white,
                     ),
