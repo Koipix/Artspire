@@ -64,14 +64,14 @@ class CategoryTabs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: 20, left: 25, right: 25, bottom: 10),
-      height: 22,
+      height: 20,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: categoryTabs.length, 
         itemBuilder: (BuildContext context, int index) {
           return index == selectedIndex ? 
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 12),
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 1),
               decoration: BoxDecoration(
                 color: const Color(0xFF7A88F2),
                 borderRadius: BorderRadius.circular(6),
@@ -85,17 +85,28 @@ class CategoryTabs extends StatelessWidget {
                 ),
               )
             ) :
-            Text(
-              categoryTabs[index],
-              style: GoogleFonts.poppins(
-                fontSize: 13,
-                fontWeight: FontWeight.normal,
-                color: const Color(0xFFC5C2D2), 
-              ),
-            ); 
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 1),
+              child: Text(
+                categoryTabs[index],
+                style: GoogleFonts.poppins(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: const Color(0xFFC5C2D2), 
+                ),
+              )
+            );
+            // Text(
+            //   categoryTabs[index],
+            //   style: GoogleFonts.poppins(
+            //     fontSize: 13,
+            //     fontWeight: FontWeight.normal,
+            //     color: const Color(0xFFC5C2D2), 
+            //   ),
+            // ); 
         }, 
         separatorBuilder: (context, index) {
-          return const SizedBox(width: 18);
+          return const SizedBox(width: 10);
         }
       ),
     );

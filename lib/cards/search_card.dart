@@ -119,7 +119,7 @@ class SearchCard extends StatelessWidget {
                 onPressed: () {},
                 style: TextButton.styleFrom(
                   backgroundColor: const Color(0xFF7A88F2),
-                  padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 15),
+                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ), 

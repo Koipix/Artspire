@@ -82,7 +82,7 @@ class PopCard extends StatelessWidget {
                   child: const Text(
                     "Explore",
                     style: TextStyle(
-                      fontSize: 11,
+                      fontSize: 14,
                       letterSpacing: 0.5,
                       fontWeight: FontWeight.w800,
                       color: Colors.white,
