@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MessagesPage extends StatelessWidget {
   const MessagesPage({super.key});
@@ -11,13 +12,9 @@ class MessagesPage extends StatelessWidget {
         backgroundColor: const Color(0xFF21212E),
         elevation: 0,
         centerTitle: true,
-        title: const Text(
+        title: Text(
           'Messages',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 28,
-            fontWeight: FontWeight.bold,
-          ),
+          style: GoogleFonts.poppins(color: Colors.white, fontSize: 28),
         ),
       ),
       body: const Center(
