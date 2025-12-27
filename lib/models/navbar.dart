@@ -14,9 +14,7 @@ class NavBar extends StatelessWidget {
   ];
 
   int _locationIndex(String location) {
-    final index = _routes.indexWhere(
-      (r) => location.startsWith(r),
-    );
+    final index = _routes.indexWhere((r) => location.startsWith(r));
     return index < 0 ? 0 : index;
   }
 
@@ -26,12 +24,7 @@ class NavBar extends StatelessWidget {
 
     return Container(
       decoration: const BoxDecoration(
-        border: Border(
-          top: BorderSide(
-            color: Color(0xFF383843),
-            width: 2,
-          )
-        )
+        border: Border(top: BorderSide(color: Color(0xFF383843), width: 2)),
       ),
       child: NavigationBar(
         labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
@@ -49,43 +42,43 @@ class NavBar extends StatelessWidget {
               "assets/icons/Home_Highlight.svg",
               height: 55,
               width: 55,
-            ), 
-            label: "uwu",
+            ),
+            label: "Home",
           ),
           NavigationDestination(
             icon: SvgPicture.asset(
               "assets/icons/Compass.svg",
               height: 25,
               width: 25,
-            ), 
-            label: "uwu",
+            ),
+            label: "Explore",
           ),
           NavigationDestination(
             icon: SvgPicture.asset(
               "assets/icons/Add.svg",
               height: 50,
               width: 50,
-            ), 
-            label: "uwu",
+            ),
+            label: "Create",
           ),
           NavigationDestination(
             icon: SvgPicture.asset(
               "assets/icons/msg.svg",
               height: 25,
               width: 25,
-            ), 
-            label: "uwu",
+            ),
+            label: "Message",
           ),
           NavigationDestination(
             icon: SvgPicture.asset(
               "assets/icons/User.svg",
               height: 25,
               width: 25,
-            ), 
-            label: "uwu",
+            ),
+            label: "Profile",
           ),
         ],
-      )
+      ),
     );
   }
 }

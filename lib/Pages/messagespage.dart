@@ -5,25 +5,27 @@ class MessagesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 50,
-      color: const Color(0xFF21212e),
-      child: Center(
-        child: Column( //plain ol page, replace this property with your own design :3
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Messages",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 42,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),     
+    return Scaffold(
+      backgroundColor: const Color(0xFF21212E),
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF21212E),
+        elevation: 0,
+        centerTitle: true,
+        title: const Text(
+          'Messages',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 28,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+      body: const Center(
+        child: Text(
+          'Your messages will appear here',
+          style: TextStyle(color: Colors.white70),
+        ),
       ),
     );
   }
 }
-
