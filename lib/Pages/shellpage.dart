@@ -10,9 +10,8 @@ class ShellPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF21212e),
-      body: SafeArea(child: child), 
-      bottomNavigationBar: const NavBar(), 
+      body: SafeArea(child: child),
+      bottomNavigationBar: const NavBar(),
     );
   }
 }
-
