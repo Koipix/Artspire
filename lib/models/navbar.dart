@@ -39,6 +39,11 @@ class NavBar extends StatelessWidget {
         destinations: [
           NavigationDestination(
             icon: SvgPicture.asset(
+              "assets/icons/Home.svg",
+              height: 20,
+              width: 20,
+            ),
+            selectedIcon: SvgPicture.asset(
               "assets/icons/Home_Highlight.svg",
               height: 55,
               width: 55,
@@ -50,6 +55,11 @@ class NavBar extends StatelessWidget {
               "assets/icons/Compass.svg",
               height: 25,
               width: 25,
+            ),
+            selectedIcon: SvgPicture.asset(
+              "assets/icons/Compass_Highlight.svg",
+              height: 55,
+              width: 55,
             ),
             label: "Explore",
           ),
@@ -63,9 +73,14 @@ class NavBar extends StatelessWidget {
           ),
           NavigationDestination(
             icon: SvgPicture.asset(
-              "assets/icons/msg.svg",
+              "assets/icons/Message.svg",
               height: 25,
               width: 25,
+            ),
+            selectedIcon: SvgPicture.asset(
+              "assets/icons/Message_Highlight.svg",
+              height: 55,
+              width: 55,
             ),
             label: "Message",
           ),
@@ -74,6 +89,11 @@ class NavBar extends StatelessWidget {
               "assets/icons/User.svg",
               height: 25,
               width: 25,
+            ),
+            selectedIcon: SvgPicture.asset(
+              "assets/icons/User_Hightlight.svg",
+              height: 55,
+              width: 55,
             ),
             label: "Profile",
           ),
