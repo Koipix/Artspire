@@ -24,20 +24,20 @@ class _SearchPageState extends State<SearchPage> {
       price: "₱2,055.90", 
     ),
     SearchItem(
-      cardName: 'Animation', 
+      cardName: 'Animated Cover', 
       artistName:"potatoimoetz", 
       imgPath: "",
-      tag: "Illustration",
+      tag: "Animation",
       isNewOffer: true, 
-      price: "₱2,055.90", 
+      price: "₱5,099.99", 
     ),
     SearchItem(
-      cardName: 'Animated Emotes', 
+      cardName: 'Stickers Pack', 
       artistName:"88 Studio",
       imgPath: "",
-      tag: "Illustration",
+      tag: "Emotes",
       isNewOffer: true, 
-      price: "₱2,055.90", 
+      price: "₱700.90", 
     ),
   ];
 
