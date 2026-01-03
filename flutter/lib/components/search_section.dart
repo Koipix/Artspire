@@ -1,8 +1,11 @@
 import 'package:artspire/widgets/search_card.dart';
 import 'package:flutter/material.dart';
+import 'package:artspire/models/searchItem.dart';
 
 class SearchSection extends StatelessWidget {
-  const SearchSection({super.key});
+  final List<SearchItem> items;
+
+  SearchSection({super.key, required this.items});
 
   @override
   Widget build(BuildContext context) {
@@ -11,15 +14,9 @@ class SearchSection extends StatelessWidget {
         height: 520,
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         child: ListView.separated(
-          itemCount: 3, //hardcoded data, change later
+          itemCount: items.length, 
           itemBuilder: (BuildContext context, int index) {
-            return SearchCard(
-              artistName:"梅原生（せい）", 
-              serviceName: 'Full Illustration', 
-              price: "₱2,055.90", 
-              imgPath: "assets/img/sei.png",
-              isNewOffer: true, 
-            );
+            return SearchCard(item: items[index]);
           }, 
           separatorBuilder: (context, index) {
             return const SizedBox(height: 15);

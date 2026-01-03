@@ -1,22 +1,12 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:artspire/models/searchItem.dart';
 
 class SearchCard extends StatelessWidget {
-  const SearchCard({
-    super.key,
-    required this.artistName,
-    required this.serviceName,
-    required this.price,
-    required this.isNewOffer,
-    required this.imgPath
-  });
+  final SearchItem item;
 
-  final String artistName;
-  final String serviceName;
-  final String price;
-  final String imgPath;
-  final bool isNewOffer;
+  const SearchCard({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
@@ -37,13 +27,15 @@ class SearchCard extends StatelessWidget {
               margin: EdgeInsets.only(bottom: 15),
               width: double.infinity,
               padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
+              decoration: 
+              BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(6),
-                image: DecorationImage(
-                  image: AssetImage(imgPath),
-                  fit: BoxFit.cover
-                ), 
+                image: item.imgPath.isNotEmpty 
+                ? DecorationImage(
+                    image: AssetImage(item.imgPath),
+                    fit: BoxFit.cover
+                ) : null, 
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,7 +67,7 @@ class SearchCard extends StatelessWidget {
                           borderRadius: BorderRadius.circular(5),
                         ),
                         child: Text(
-                          "梅原生（せい）",
+                          item.artistName,
                           style: GoogleFonts.poppins(
                             fontSize: 12,
                             fontWeight: FontWeight.normal,
@@ -93,29 +85,33 @@ class SearchCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    serviceName,
-                    style: GoogleFonts.poppins(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      letterSpacing: 1,
-                      color: Colors.white,
+              Expanded (
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      item.cardName,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: GoogleFonts.poppins(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: 1,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  Text(
-                    price,
-                    style: GoogleFonts.poppins(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
+                    Text(
+                      item.price,
+                      style: GoogleFonts.poppins(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
+              const SizedBox(width: 15),
               TextButton(
                 onPressed: () {},
                 style: TextButton.styleFrom(
