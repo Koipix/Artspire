@@ -9,15 +9,17 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        TextHeader(),
-        Searchbar(),
-        PopularSection(),
-        ServiceSection(),
-      ],
-    );
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          TextHeader(),
+          Searchbar(),
+          PopularSection(),
+          ServiceSection(),
+        ],
+      ),
+    ); 
   }
 }
 
