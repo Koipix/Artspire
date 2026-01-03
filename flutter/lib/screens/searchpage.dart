@@ -40,6 +40,13 @@ class _SearchPageState extends State<SearchPage> {
       price: "₱700.90", 
     ),
   ];
+  
+  //filter logic
+  List<SearchItem> filteredItems() {
+    if (selectedIndex == 0) return items;
+    const categoryTabs = ["Illustration", "Animation", "Emotes", "Rating"];
+    return items.where((e) => e.tag == categoryTabs[selectedIndex - 1]).toList();
+  }
 
   int selectedIndex = 0;
   void _updateCategory(index) {
@@ -47,7 +54,6 @@ class _SearchPageState extends State<SearchPage> {
       selectedIndex = index;
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +67,7 @@ class _SearchPageState extends State<SearchPage> {
           onSelected: _updateCategory,
         ),
         SearchSection(
-          items: items,
+          items: filteredItems(),
         ),
       ], 
     );
@@ -86,7 +92,7 @@ class CategoryTab extends StatefulWidget {
 class _CategoryTabState extends State<CategoryTab> {
   
   //mock data, change later
-  static const List<String> categoryTabs = ["All", "Recommendation", "Popular", "Hot Offer", "Rating"];
+  static const List<String> categoryTabs = ["All", "Illustration", "Animation", "Emotes", "Rating"];
 
   @override
   Widget build(BuildContext context) {
