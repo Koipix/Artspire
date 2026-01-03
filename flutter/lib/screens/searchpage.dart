@@ -1,5 +1,6 @@
 import 'package:artspire/widgets/searcbar.dart';
 import 'package:artspire/components/search_section.dart';
+import 'package:artspire/models/searchItem.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -12,12 +13,41 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
 
-  static int selectedIndex = 0;
+  //mock data for testing
+  final List<SearchItem> items = [
+    SearchItem(
+      cardName: 'Full Illustration', 
+      artistName:"梅原生（せい）", 
+      imgPath: "assets/img/sei.png",
+      tag: "Illustration",
+      isNewOffer: true, 
+      price: "₱2,055.90", 
+    ),
+    SearchItem(
+      cardName: 'Animation', 
+      artistName:"potatoimoetz", 
+      imgPath: "",
+      tag: "Illustration",
+      isNewOffer: true, 
+      price: "₱2,055.90", 
+    ),
+    SearchItem(
+      cardName: 'Animated Emotes', 
+      artistName:"88 Studio",
+      imgPath: "",
+      tag: "Illustration",
+      isNewOffer: true, 
+      price: "₱2,055.90", 
+    ),
+  ];
+
+  int selectedIndex = 0;
   void _updateCategory(index) {
     setState(() {
       selectedIndex = index;
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +60,9 @@ class _SearchPageState extends State<SearchPage> {
           selectedIndex: selectedIndex,
           onSelected: _updateCategory,
         ),
-        SearchSection(),
+        SearchSection(
+          items: items,
+        ),
       ], 
     );
   }
