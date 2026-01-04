@@ -32,10 +32,7 @@ class MessageHeader extends StatelessWidget {
             "Messages",
             style: GoogleFonts.poppins(fontSize: 28, color: Colors.white),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14),
-            child: Searchbar(),
-          ),
+          Searchbar(),
         ],
       ),
     );
@@ -90,22 +87,22 @@ class ChatTree extends StatelessWidget {
   static const List<Map<String, String>> chats = [
     {
       "name": "梅原生（せい）",
-      "message": "Hii, thank you so much!🩵 Enjoy your...",
+      "message": "Hii, thank you so much!🩵 Enjoy your holiday <<<<<))))",
       "image": "assets/img/Chatpf.png",
     },
     {
       "name": "梅原生（せい）",
-      "message": "Hii, thank you so much!🩵 Enjoy your...",
+      "message": "Hii, thank you so much!🩵 Enjoy your holiday <<<<<))))",
       "image": "assets/img/Chatpf.png",
     },
     {
       "name": "梅原生（せい）",
-      "message": "Hii, thank you so much!🩵 Enjoy your...",
+      "message": "Hii, thank you so much!🩵 Enjoy your holiday <<<<<))))",
       "image": "assets/img/Chatpf.png",
     },
     {
       "name": "梅原生（せい）",
-      "message": "Hii, thank you so much!🩵 Enjoy your...",
+      "message": "Hii, thank you so much!🩵 Enjoy your holiday <<<<<))))",
       "image": "assets/img/Chatpf.png",
     },
   ];
@@ -130,7 +127,6 @@ class ChatTree extends StatelessWidget {
                 ),
 
                 const SizedBox(width: 32),
-
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -158,12 +154,12 @@ class ChatTree extends StatelessWidget {
                     ],
                   ),
                 ),
+                Padding(padding: const EdgeInsets.symmetric(horizontal: 20)),
                 SvgPicture.asset(
                   'assets/icons/menuchat.svg',
                   width: 45,
                   height: 45,
                 ),
-                Padding(padding: const EdgeInsets.symmetric(horizontal: 20)),
               ],
             ),
           );
