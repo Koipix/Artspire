@@ -7,6 +7,7 @@ class SearchItem {
   final bool isNewOffer;
   final double price;
   final double rating;
+  final int rateAmount;
 
   SearchItem ({
     required this.cardName,
@@ -17,5 +18,6 @@ class SearchItem {
     required this.isNewOffer,
     required this.price,
     required this.rating,
+    required this.rateAmount,
   });
 }

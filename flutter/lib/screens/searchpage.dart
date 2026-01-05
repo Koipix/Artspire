@@ -23,7 +23,8 @@ class _SearchPageState extends State<SearchPage> {
       tag: "Illustration",
       isNewOffer: true, 
       price: 3500, 
-      rating: 5.0
+      rating: 5.0,
+      rateAmount: 109,
     ),
     SearchItem(
       cardName: 'Animated Cover', 
@@ -34,6 +35,7 @@ class _SearchPageState extends State<SearchPage> {
       isNewOffer: true, 
       price: 7000, 
       rating: 4.6,
+      rateAmount: 41,
     ),
     SearchItem(
       cardName: 'Stickers Pack', 
@@ -43,7 +45,8 @@ class _SearchPageState extends State<SearchPage> {
       tag: "Emotes",
       isNewOffer: true, 
       price: 1999, 
-      rating: 4.9
+      rating: 4.9,
+      rateAmount: 65,
     ),
   ];
   

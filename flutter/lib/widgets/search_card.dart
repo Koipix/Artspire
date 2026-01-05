@@ -137,6 +137,15 @@ class SearchCard extends StatelessWidget {
                                 color: Colors.white,
                               ),
                             ),
+                            const SizedBox(width: 2),
+                            Text(
+                              "(${item.rateAmount.toString()})",
+                              style: GoogleFonts.poppins(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                                color: const Color(0xFFC5C2D2),
+                              ),
+                            ),
                           ],
                         ),
                       ],
