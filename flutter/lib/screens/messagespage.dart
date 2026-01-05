@@ -30,7 +30,11 @@ class MessageHeader extends StatelessWidget {
         children: [
           Text(
             "Messages",
-            style: GoogleFonts.poppins(fontSize: 28, color: Colors.white),
+            style: GoogleFonts.poppins(
+              fontSize: 20, 
+              fontWeight: FontWeight.w500,
+              color: Colors.white
+            ),
           ),
           Searchbar(),
         ],
@@ -48,7 +52,7 @@ class ChatType extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 20, left: 25, bottom: 12),
+      margin: const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 12),
       child: Row(
         children: List.generate(msgcategs.length, (index) {
           final isSelected = index == selectedcateg;
@@ -60,11 +64,18 @@ class ChatType extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 3),
               decoration: isSelected
-                  ? BoxDecoration(
-                      color: const Color(0xFF7A88F2),
-                      borderRadius: BorderRadius.circular(8),
-                    )
-                  : BoxDecoration(borderRadius: BorderRadius.circular(8)),
+              ? BoxDecoration(
+                color: const Color(0xFF7A88F2),
+                borderRadius: BorderRadius.circular(8),
+              )
+              : BoxDecoration(
+                border: Border.all(
+                  color: const Color(0xFF383843),
+                  width: 1,
+                  style: BorderStyle.solid,
+                ),
+                borderRadius: BorderRadius.circular(8)
+              ),
               child: Text(
                 msgcategs[index],
                 style: GoogleFonts.poppins(
@@ -75,7 +86,8 @@ class ChatType extends StatelessWidget {
               ),
             ),
           );
-        }),
+        }
+        ),
       ),
     );
   }
@@ -117,7 +129,7 @@ class ChatTree extends StatelessWidget {
 
           return Container(
             margin: EdgeInsets.symmetric(horizontal: 20),
-            padding: EdgeInsets.all(12),
+            padding: EdgeInsets.symmetric(vertical: 12),
 
             child: Row(
               children: [
@@ -126,7 +138,7 @@ class ChatTree extends StatelessWidget {
                   backgroundImage: AssetImage(chat["image"]!),
                 ),
 
-                const SizedBox(width: 32),
+                const SizedBox(width: 20),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -139,7 +151,7 @@ class ChatTree extends StatelessWidget {
                           color: Colors.white,
                         ),
                       ),
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 14),
 
                       Text(
                         chat["message"]!,
@@ -147,14 +159,14 @@ class ChatTree extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: GoogleFonts.poppins(
                           fontSize: 12,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w400,
                           color: const Color(0xFFC5C2D2),
                         ),
                       ),
                     ],
                   ),
                 ),
-                Padding(padding: const EdgeInsets.symmetric(horizontal: 20)),
+                Padding(padding: const EdgeInsets.symmetric(horizontal: 12)),
                 SvgPicture.asset(
                   'assets/icons/menuchat.svg',
                   width: 45,
