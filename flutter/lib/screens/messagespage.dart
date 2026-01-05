@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:artspire/widgets/searcbar.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:artspire/widgets/searcbar.dart';
+import 'package:artspire/models/chatItem.dart';
 
 class MessagesPage extends StatefulWidget {
   const MessagesPage({super.key});
@@ -19,6 +20,33 @@ class _MessagePageState extends State<MessagesPage> {
     });
   }
 
+  //mock data
+  final List<ChatItem> chats = [
+    ChatItem(
+      username: "梅原生（せい）",
+      latestMsg: "Hii, thank you so much!🩵 Enjoy your holiday <<<<<))))",
+      imgPath: "assets/img/Chatpf.png",
+      isRequested: false,
+    ),
+    ChatItem(
+      username: "さえ[saemidesu]",
+      latestMsg: "Appreciate your request, I'll try my best working on this!",
+      imgPath: "assets/img/saemi.png",
+      isRequested: false,
+    ),
+    ChatItem(
+      username: "somna",
+      latestMsg: "Can you make this animation? Thank you",
+      imgPath: "assets/img/somna.png",
+      isRequested: true,
+    ),
+  ];
+
+  List<ChatItem> filteredItems() {
+    if (selectedIndex == 0) return chats;
+    else return chats.where((e) => e.isRequested).toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +59,9 @@ class _MessagePageState extends State<MessagesPage> {
             selectedIndex: selectedIndex,
             onSelected: _updateCategory,
           ), 
-          ChatTree()
+          ChatTree(
+            chats: filteredItems(),
+          )
         ],
       ),
     );
@@ -129,30 +159,12 @@ class MessageHeader extends StatelessWidget {
 }
 
 class ChatTree extends StatelessWidget {
-  const ChatTree({super.key});
+  final List<ChatItem> chats;
 
-  static const List<Map<String, String>> chats = [
-    {
-      "name": "梅原生（せい）",
-      "message": "Hii, thank you so much!🩵 Enjoy your holiday <<<<<))))",
-      "image": "assets/img/Chatpf.png",
-    },
-    {
-      "name": "梅原生（せい）",
-      "message": "Hii, thank you so much!🩵 Enjoy your holiday <<<<<))))",
-      "image": "assets/img/Chatpf.png",
-    },
-    {
-      "name": "梅原生（せい）",
-      "message": "Hii, thank you so much!🩵 Enjoy your holiday <<<<<))))",
-      "image": "assets/img/Chatpf.png",
-    },
-    {
-      "name": "梅原生（せい）",
-      "message": "Hii, thank you so much!🩵 Enjoy your holiday <<<<<))))",
-      "image": "assets/img/Chatpf.png",
-    },
-  ];
+  const ChatTree({
+    super.key,
+    required this.chats
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -170,7 +182,7 @@ class ChatTree extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 28,
-                  backgroundImage: AssetImage(chat["image"]!),
+                  backgroundImage: AssetImage(chats[index].imgPath),
                 ),
 
                 const SizedBox(width: 20),
@@ -179,7 +191,7 @@ class ChatTree extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        chat["name"]!,
+                        chats[index].username,
                         style: GoogleFonts.poppins(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
@@ -189,7 +201,7 @@ class ChatTree extends StatelessWidget {
                       const SizedBox(height: 14),
 
                       Text(
-                        chat["message"]!,
+                        chats[index].latestMsg,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: GoogleFonts.poppins(
