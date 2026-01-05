@@ -1,6 +1,7 @@
 import 'package:artspire/widgets/search_card.dart';
 import 'package:flutter/material.dart';
 import 'package:artspire/models/searchItem.dart';
+import 'package:go_router/go_router.dart';
 
 class SearchSection extends StatelessWidget {
   final List<SearchItem> items;
@@ -16,7 +17,10 @@ class SearchSection extends StatelessWidget {
         child: ListView.separated(
           itemCount: items.length, 
           itemBuilder: (BuildContext context, int index) {
-            return SearchCard(item: items[index]);
+            return GestureDetector(
+              onTap: () => context.push("/search/${items[index].id}"),
+              child: SearchCard(item: items[index]),
+            ); 
           }, 
           separatorBuilder: (context, index) {
             return const SizedBox(height: 15);

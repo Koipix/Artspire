@@ -1,4 +1,5 @@
 class SearchItem {
+  final int id;
   final String cardName;
   final String artistName;
   final String imgPath;
@@ -10,6 +11,7 @@ class SearchItem {
   final int rateAmount;
 
   SearchItem ({
+    required this.id,
     required this.cardName,
     required this.artistName,
     required this.imgPath,

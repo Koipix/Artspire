@@ -16,6 +16,7 @@ class _SearchPageState extends State<SearchPage> {
   //mock data for testing
   final List<SearchItem> items = [
     SearchItem(
+      id: 1,
       cardName: 'Full Illustration', 
       artistName:"梅原生（せい）", 
       imgPath: "assets/img/sei.png",
@@ -27,6 +28,7 @@ class _SearchPageState extends State<SearchPage> {
       rateAmount: 109,
     ),
     SearchItem(
+      id: 2,
       cardName: 'Animated Cover', 
       artistName:"potatoimoetz", 
       imgPath: "",
@@ -38,6 +40,7 @@ class _SearchPageState extends State<SearchPage> {
       rateAmount: 41,
     ),
     SearchItem(
+      id: 3,
       cardName: 'Stickers Pack', 
       artistName:"88 Studio",
       imgPath: "",

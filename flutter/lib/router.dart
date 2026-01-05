@@ -4,6 +4,7 @@ import 'package:artspire/screens/profilepage.dart';
 import 'package:artspire/screens/shellpage.dart';
 import 'package:artspire/screens/homepage.dart';
 import 'package:artspire/screens/searchpage.dart';
+import 'package:artspire/screens/searchpage_card.dart';
 import 'package:go_router/go_router.dart';
 
 final router = GoRouter(
@@ -23,6 +24,17 @@ final router = GoRouter(
           pageBuilder: (context, state) => NoTransitionPage(
             child: SearchPage(),
           ),
+          routes: [
+            GoRoute(
+              path: ':id',
+              pageBuilder: (context, state) {
+                final id = state.pathParameters['id']!;
+                return NoTransitionPage(
+                  child: SearchCardDetails(id: id)
+                );
+              }
+            ),
+          ],
         ),
         GoRoute(
           path: '/notification',
