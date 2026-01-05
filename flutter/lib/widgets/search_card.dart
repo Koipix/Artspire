@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:artspire/models/searchItem.dart';
 
 class SearchCard extends StatelessWidget {
@@ -24,7 +25,7 @@ class SearchCard extends StatelessWidget {
           AspectRatio(
             aspectRatio: 16 / 9,
             child: Container(
-              margin: EdgeInsets.only(bottom: 15),
+              margin: EdgeInsets.only(bottom: 10),
               width: double.infinity,
               padding: EdgeInsets.all(10),
               decoration: 
@@ -48,7 +49,7 @@ class SearchCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(5),
                     ),
                     child: Text(
-                      "New Offer",
+                      "New",
                       style: GoogleFonts.poppins(
                         fontSize: 12,
                         fontWeight: FontWeight.normal,
@@ -67,7 +68,7 @@ class SearchCard extends StatelessWidget {
                           borderRadius: BorderRadius.circular(5),
                         ),
                         child: Text(
-                          item.artistName,
+                          "₱ ${item.price.toString()}",
                           style: GoogleFonts.poppins(
                             fontSize: 12,
                             fontWeight: FontWeight.normal,
@@ -100,34 +101,47 @@ class SearchCard extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
-                    Text(
-                      item.price,
-                      style: GoogleFonts.poppins(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 10,
+                              backgroundImage: AssetImage(item.pImgPath),
+                            ),
+                            const SizedBox(width: 6),
+                            Text(
+                              item.artistName,
+                              style: GoogleFonts.poppins(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            SvgPicture.asset(
+                              "assets/icons/Star.svg",
+                              height: 18,
+                              width: 18,
+                            ),
+                            const SizedBox(width: 5),
+                            Text(
+                              item.rating.toStringAsFixed(1),
+                              style: GoogleFonts.poppins(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ],
-                ),
-              ),
-              const SizedBox(width: 15),
-              TextButton(
-                onPressed: () {},
-                style: TextButton.styleFrom(
-                  backgroundColor: const Color(0xFF7A88F2),
-                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ), 
-                ),
-                child: Text(
-                  "Purchase",
-                  style: GoogleFonts.poppins(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white,
-                  ),
                 ),
               ),
             ],

@@ -19,25 +19,31 @@ class _SearchPageState extends State<SearchPage> {
       cardName: 'Full Illustration', 
       artistName:"梅原生（せい）", 
       imgPath: "assets/img/sei.png",
+      pImgPath: "assets/img/Chatpf.png",
       tag: "Illustration",
       isNewOffer: true, 
-      price: "₱2,055.90", 
+      price: 3500, 
+      rating: 5.0
     ),
     SearchItem(
       cardName: 'Animated Cover', 
       artistName:"potatoimoetz", 
       imgPath: "",
+      pImgPath: "assets/img/saemi.png",
       tag: "Animation",
       isNewOffer: true, 
-      price: "₱5,099.99", 
+      price: 7000, 
+      rating: 4.6,
     ),
     SearchItem(
       cardName: 'Stickers Pack', 
       artistName:"88 Studio",
       imgPath: "",
+      pImgPath: "assets/img/somna.png",
       tag: "Emotes",
       isNewOffer: true, 
-      price: "₱700.90", 
+      price: 1999, 
+      rating: 4.9
     ),
   ];
   
