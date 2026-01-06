@@ -28,7 +28,7 @@ final router = GoRouter(
             GoRoute(
               path: ':id',
               pageBuilder: (context, state) {
-                final id = state.pathParameters['id']!;
+                final id = int.parse(state.pathParameters['id']!);
                 return NoTransitionPage(
                   child: SearchCardDetails(id: id)
                 );
