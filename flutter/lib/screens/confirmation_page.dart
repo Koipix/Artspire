@@ -5,18 +5,15 @@ import 'package:artspire/models/searchItem.dart';
 import 'package:artspire/data_rep.dart';
 
 class PurchaseConfirmation extends StatelessWidget {
-  final int id;
-
   PurchaseConfirmation({
     super.key,
     required this.id,
-  });
+  }) : item = DataRep.searchItems.firstWhere((e) => e.id == id);
 
+  final int id;
   final List<SearchItem> items = DataRep.searchItems; 
-  
-  SearchItem? getItem() {
-    return items.firstWhere((e) => e.id == id);
-  }
+
+  final SearchItem item;
 
   @override
   Widget build(BuildContext context) {
@@ -39,10 +36,10 @@ class PurchaseConfirmation extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             PriceDetails(
-              item: getItem(),
+              item: item,
             ),
             HeaderImage(
-              item: getItem(),
+              item: item,
             ),
             BuyingOptions(),
             PaymentMethods(),
@@ -64,12 +61,12 @@ class PriceDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 15),
+      margin: const EdgeInsets.symmetric(horizontal: 15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            item?.cardName ?? 'Item not found',
+            item!.cardName ?? 'Item not found',
             style: GoogleFonts.poppins(
               fontSize: 24, 
               fontWeight: FontWeight.w700,
@@ -113,7 +110,7 @@ class HeaderImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+      margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
       child: AspectRatio(
         aspectRatio: 4 / 3,
         child: Container(
@@ -121,7 +118,7 @@ class HeaderImage extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(10),
-            image: item?.imgPath.isNotEmpty ?? false
+            image: item!.imgPath.isNotEmpty
             ? DecorationImage(
               image: AssetImage(item!.imgPath),
               fit: BoxFit.cover
@@ -144,7 +141,7 @@ class _BuyingOptionsState extends State<BuyingOptions> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 15),
+      margin: const EdgeInsets.symmetric(horizontal: 15),
       child: Column(
         spacing: 10,
         children: [
@@ -254,8 +251,8 @@ class PaymentMethods extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-      padding: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+      padding: const EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 10),
       decoration: BoxDecoration(
         border: Border.all(
           color: const Color(0xFF383843),
