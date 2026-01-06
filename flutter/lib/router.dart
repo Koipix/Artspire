@@ -5,8 +5,9 @@ import 'package:artspire/screens/shellpage.dart';
 import 'package:artspire/screens/homepage.dart';
 import 'package:artspire/screens/searchpage.dart';
 import 'package:artspire/screens/searchpage_card.dart';
-import 'package:go_router/go_router.dart';
 import 'package:artspire/widgets/accountpage.dart';
+import 'package:artspire/screens/confirmation_page.dart';
+import 'package:go_router/go_router.dart';
 
 final router = GoRouter(
   initialLocation: '/home',
@@ -50,5 +51,16 @@ final router = GoRouter(
         ),
       ],
     ),
+
+    //buying confirmation
+    GoRoute(
+      path: '/search/:id/details',
+      pageBuilder: (context, state) { 
+        final id = int.parse(state.pathParameters['id']!);
+        return NoTransitionPage(
+          child: PurchaseConfirmation(id: id)
+        );
+      }
+    )
   ],
 );

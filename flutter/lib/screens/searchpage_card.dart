@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:go_router/go_router.dart';
 import 'package:artspire/models/searchItem.dart';
 import 'package:artspire/data_rep.dart';
-
 
 class SearchCardDetails extends StatelessWidget {
   final int id;
@@ -228,22 +228,25 @@ class BuySection extends StatelessWidget {
               ], 
             ), 
           ),
-          Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 40,
-              vertical: 12,
-            ),
-            decoration: BoxDecoration(
-              color: const Color(0xFF7A88F2),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Center(
-              child: Text(
-                "Buy now",
-                style: GoogleFonts.poppins(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.white,
+          GestureDetector(
+            onTap: () => context.push("/search/${item?.id}/details"),
+            child: Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 40,
+                vertical: 12,
+              ),
+              decoration: BoxDecoration(
+                color: const Color(0xFF7A88F2),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Center(
+                child: Text(
+                  "Buy now",
+                  style: GoogleFonts.poppins(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
