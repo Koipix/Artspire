@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:artspire/models/searchItem.dart';
 import 'package:artspire/data_rep.dart';
-import 'package:artspire/models/searchItem.dart';
+
 
 class SearchCardDetails extends StatelessWidget {
   final int id;
@@ -13,7 +13,7 @@ class SearchCardDetails extends StatelessWidget {
     required this.id,
   });
 
-  List<SearchItem> items = DataRep.searchItems; 
+  final List<SearchItem> items = DataRep.searchItems; 
   
   SearchItem? getItem() {
     return items.firstWhere((e) => e.id == id);
@@ -111,7 +111,9 @@ class HeaderDetails extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 10,
-                    backgroundImage: AssetImage(item?.pImgPath ?? ""),
+                    backgroundImage: (item?.pImgPath != null && item!.pImgPath.isNotEmpty)
+                        ? AssetImage(item!.pImgPath)
+                        : null,
                   ),
                   const SizedBox(width: 10),
                   Text(
