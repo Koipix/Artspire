@@ -44,6 +44,12 @@ class SearchCardDetails extends StatelessWidget {
           HeaderDetails(
             item: getItem(),
           ),
+          CardDescription(
+            item: getItem(),
+          ),
+          BuySection(
+            item: getItem(),
+          ),
         ],
       ),
     );
@@ -94,6 +100,7 @@ class HeaderDetails extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 15),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,8 +135,121 @@ class HeaderDetails extends StatelessWidget {
               ),
             ],
           ),
+          SvgPicture.asset(
+            "assets/icons/HeartReact.svg",
+            height: 50,
+            width: 50,
+          ),
         ],
       ) 
     );
+  }
+}
+
+class CardDescription extends StatelessWidget {
+  final SearchItem? item;
+
+  const CardDescription ({
+    super.key,
+    required this.item,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(left: 15, right: 15, top: 35),
+      width: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            child: Text(
+              "Description",
+              style: GoogleFonts.poppins(
+                fontSize: 22, 
+                fontWeight: FontWeight.w500,
+                color: const Color(0xFFC5C2D2),
+              ),
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 10),
+            child: Text(
+              item?.description ?? 'No description provided',
+              style: GoogleFonts.poppins(
+                fontSize: 15, 
+                fontWeight: FontWeight.w300,
+                color: const Color(0xFFC5C2D2),
+              ),
+            ),
+          ),
+        ],
+      ),
+    ); 
+  }
+}
+
+class BuySection extends StatelessWidget {
+  final SearchItem? item;
+
+  const BuySection({
+    super.key,
+    required this.item,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(left: 15, right: 15, top: 20),
+      width: double.infinity,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            child: Column(
+              children: [
+                Text(
+                  "Minimum Price",
+                  style: GoogleFonts.poppins(
+                    fontSize: 16, 
+                    fontWeight: FontWeight.w400,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  "₱${item?.price.toString()}" ?? "0",
+                  style: GoogleFonts.poppins(
+                    fontSize: 22, 
+                    fontWeight: FontWeight.w600,
+                    color: const Color(0xFF7A88F2),
+                  ),
+                ),
+              ], 
+            ), 
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 40,
+              vertical: 12,
+            ),
+            decoration: BoxDecoration(
+              color: const Color(0xFF7A88F2),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Center(
+              child: Text(
+                "Buy now",
+                style: GoogleFonts.poppins(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    ); 
   }
 }
