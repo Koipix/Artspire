@@ -6,6 +6,7 @@ import 'package:artspire/screens/homepage.dart';
 import 'package:artspire/screens/searchpage.dart';
 import 'package:artspire/screens/searchpage_card.dart';
 import 'package:go_router/go_router.dart';
+import 'package:artspire/widgets/accountpage.dart';
 
 final router = GoRouter(
   initialLocation: '/home',
@@ -15,15 +16,12 @@ final router = GoRouter(
       routes: [
         GoRoute(
           path: '/home',
-          pageBuilder: (context, state) => NoTransitionPage(
-            child: HomePage(),
-          ),
+          pageBuilder: (context, state) => NoTransitionPage(child: HomePage()),
         ),
         GoRoute(
           path: '/search',
-          pageBuilder: (context, state) => NoTransitionPage(
-            child: SearchPage(),
-          ),
+          pageBuilder: (context, state) =>
+              NoTransitionPage(child: SearchPage()),
           routes: [
             GoRoute(
               path: ':id',
@@ -38,24 +36,19 @@ final router = GoRouter(
         ),
         GoRoute(
           path: '/notification',
-          pageBuilder: (context, state) => NoTransitionPage(
-            child: MessagesPage(),
-          ),
+          pageBuilder: (context, state) =>
+              NoTransitionPage(child: MessagesPage()),
         ),
         GoRoute(
           path: '/profile',
-          pageBuilder: (context, state) => NoTransitionPage(
-            child: ProfilePage(),
-          ),
+          pageBuilder: (context, state) =>
+              NoTransitionPage(child: ProfilePage()),
         ),
         GoRoute(
           path: '/add',
-          pageBuilder: (context, state) => NoTransitionPage(
-            child: AddPage(),
-          ),
+          pageBuilder: (context, state) => NoTransitionPage(child: AddPage()),
         ),
-      ], 
+      ],
     ),
   ],
 );
-
