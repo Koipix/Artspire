@@ -1,28 +1,28 @@
-class SearchItem {
+class ArtItem {
   final int id;
-  final String cardName;
+  final String serviceName;
+  final String description;
   final String artistName;
   final String imgPath;
   final String pImgPath;
-  final String tag;
-  final String description;
+  final String category;
   final String details;
   final bool isNewOffer;
   final double price;
   final double rating;
   final int rateAmount;
 
-  SearchItem ({
+  ArtItem({
     required this.id,
-    required this.cardName,
+    required this.serviceName,
+    required this.description,
     required this.artistName,
+    required this.price,
     required this.imgPath,
     required this.pImgPath, 
-    required this.tag,
-    required this.description,
+    required this.category,
     required this.details,
     required this.isNewOffer,
-    required this.price,
     required this.rating,
     required this.rateAmount,
   });

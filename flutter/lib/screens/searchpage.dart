@@ -1,9 +1,8 @@
-import 'package:artspire/widgets/searcbar.dart';
-import 'package:artspire/components/search_section.dart';
-import 'package:artspire/models/searchItem.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:artspire/data_rep.dart';
+import 'package:artspire/widgets/searcbar.dart';
+import 'package:artspire/components/search_section.dart';
+import 'package:artspire/apiService.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -14,7 +13,7 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
 
-  List<SearchItem> items = DataRep.searchItems; 
+  // List<SearchItem> items = DataRep.searchItems;
 
   //filter logic
   List<SearchItem> filteredItems() {
