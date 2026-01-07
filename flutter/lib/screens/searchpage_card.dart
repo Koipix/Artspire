@@ -47,6 +47,7 @@ class SearchCardDetails extends StatelessWidget {
           CardDescription(
             item: getItem(),
           ),
+          Spacer(),
           BuySection(
             item: getItem(),
           ),
@@ -157,7 +158,7 @@ class CardDescription extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(left: 15, right: 15, top: 35),
+      margin: const EdgeInsets.only(left: 15, right: 15, top: 20),
       width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -200,7 +201,7 @@ class BuySection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(left: 15, right: 15, top: 20),
+      margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       width: double.infinity,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -46,6 +46,12 @@ class PurchaseConfirmation extends StatelessWidget {
             ArtDetails(
               item: item,
             ),
+            TermsOfService(
+              item: item,
+            ),
+            AcceptSection(
+              item: item,
+            ),
           ],
         ),
       ),
@@ -374,7 +380,7 @@ class TermsOfService extends StatelessWidget {
         spacing: 5,
         children: [
           Text(
-            "Details",
+            "${item.artistName}'s Terms of Service",
             style: GoogleFonts.poppins(
               fontSize: 20, 
               fontWeight: FontWeight.w500,
@@ -382,12 +388,88 @@ class TermsOfService extends StatelessWidget {
             ),
           ),
           Text(
-            item!.details,
+            item!.details, //change later
             style: GoogleFonts.poppins(
               fontSize: 12, 
               fontWeight: FontWeight.w300,
-              color: const Color(0xFF828282),
+              color: const Color(0xFFC5C2D2),
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class AcceptSection extends StatefulWidget {
+  const AcceptSection({
+    super.key,
+    required this.item,
+  });
+
+  final SearchItem item;
+
+  State<AcceptSection> createState() => _AcceptSectionState();
+}
+
+class _AcceptSectionState extends State<AcceptSection> {
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      child: Column(
+        spacing: 15,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SvgPicture.asset(
+                "assets/icons/Unchecked.svg",
+                height: 25,
+                width: 25,
+              ),
+              SizedBox(width: 15),
+              Text(
+                "I accept ${widget.item.artistName}'s Terms of Service",
+                style: GoogleFonts.poppins(
+                  fontSize: 13, 
+                  fontWeight: FontWeight.w400,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+          Row(
+            spacing: 10,
+            children: [
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 10,
+                  ),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF7A88F2),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Accept terms to start request",
+                      style: GoogleFonts.poppins(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SvgPicture.asset(
+                "assets/icons/MessageBackdrop.svg",
+                height: 40,
+                width: 40,
+              ),
+            ],
           ),
         ],
       ),
