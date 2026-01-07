@@ -8,7 +8,6 @@ import 'package:artspire/screens/searchpage_card.dart';
 import 'package:artspire/widgets/accountpage.dart';
 import 'package:artspire/screens/confirmation_page.dart';
 import 'package:go_router/go_router.dart';
-import 'package:artspire/widgets/accountpage.dart';
 
 final router = GoRouter(
   initialLocation: '/home',
@@ -45,14 +44,6 @@ final router = GoRouter(
           path: '/profile',
           pageBuilder: (context, state) =>
               NoTransitionPage(child: ProfilePage()),
-          routes: [
-            GoRoute(
-              path: ':editprofile',
-              pageBuilder: (context, state) {
-                return NoTransitionPage(child: AccountPage());
-              },
-            ),
-          ],
         ),
         GoRoute(
           path: '/add',
