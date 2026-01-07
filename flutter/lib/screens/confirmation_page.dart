@@ -43,6 +43,9 @@ class PurchaseConfirmation extends StatelessWidget {
             ),
             BuyingOptions(),
             PaymentMethods(),
+            ArtDetails(
+              item: item,
+            ),
           ],
         ),
       ),
@@ -51,7 +54,7 @@ class PurchaseConfirmation extends StatelessWidget {
 }
 
 class PriceDetails extends StatelessWidget {
-  final SearchItem? item;
+  final SearchItem item;
 
   const PriceDetails({
     super.key,
@@ -251,7 +254,7 @@ class PaymentMethods extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+      margin: const EdgeInsets.only(left: 15, right: 15, top: 15, bottom: 5),
       padding: const EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 10),
       decoration: BoxDecoration(
         border: Border.all(
@@ -291,6 +294,100 @@ class PaymentMethods extends StatelessWidget {
                 width: 25,
               ),
             ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ArtDetails extends StatelessWidget {
+  final SearchItem item;
+
+  const ArtDetails({
+    super.key,
+    required this.item,
+  });
+  
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5),
+      padding: const EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 10),
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: const Color(0xFF383843),
+          width: 2,
+        ),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: 5,
+        children: [
+          Text(
+            "Details",
+            style: GoogleFonts.poppins(
+              fontSize: 20, 
+              fontWeight: FontWeight.w500,
+              color: Colors.white,
+            ),
+          ),
+          Text(
+            item!.details,
+            style: GoogleFonts.poppins(
+              fontSize: 12, 
+              fontWeight: FontWeight.w300,
+              color: const Color(0xFF828282),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class TermsOfService extends StatelessWidget {
+  final SearchItem item;
+
+  const TermsOfService({
+    super.key,
+    required this.item,
+  });
+  
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5),
+      padding: const EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 10),
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: const Color(0xFF383843),
+          width: 2,
+        ),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: 5,
+        children: [
+          Text(
+            "Details",
+            style: GoogleFonts.poppins(
+              fontSize: 20, 
+              fontWeight: FontWeight.w500,
+              color: Colors.white,
+            ),
+          ),
+          Text(
+            item!.details,
+            style: GoogleFonts.poppins(
+              fontSize: 12, 
+              fontWeight: FontWeight.w300,
+              color: const Color(0xFF828282),
+            ),
           ),
         ],
       ),

@@ -6,44 +6,24 @@ class PopularSection extends StatelessWidget {
   const PopularSection({super.key});
 
   //mock data declaration for layout testing
-  static const List<String> tags = ["Illustration", "Manga", "3D Model"];
+  static const List<String> tags = ["Made for creators", "No Generative AI", "Verified but private"];
+  static const List<String> tagsDescription = [
+    "Anything you need for vtubing / streaming, music, games and content adventures - fans are welcome too!",
+    "This space prioritizes human creativity and authorship. Generative AI content is not allowed.",
+    "Verified artists, commisions and reviews but your info stays strictly between you and us!"
+  ];
   static const List<String> price = ["₱3,000", "₱2,000", "₱5,000"];
   static const List<String> pImgPath = ["assets/img/n.png", "assets/img/manga.png", "assets/img/l3d.png"];
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 20, right: 20, top: 20),
+      margin: EdgeInsets.only(left: 20, right: 20, top: 5),
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Popular Tags",
-                style: GoogleFonts.poppins(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                  letterSpacing: 0.2,
-                  height: 1.2,
-                  color: Colors.white,
-                ),
-              ),
-              Text(
-                "View All",
-                style: GoogleFonts.poppins(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  letterSpacing: 0.2,
-                  height: 1.2,
-                  color: const Color(0xFF7A88F2),
-                ),
-              ),
-            ], 
-          ), //Popular Heading
           Container(
             margin: EdgeInsets.only(top: 15),
-            height: 160,
+            height: 140,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemCount: tags.length, 
@@ -51,6 +31,7 @@ class PopularSection extends StatelessWidget {
                 return PopCard(
                   imgPath: pImgPath[index],
                   tagName: tags[index],
+                  tagsDescription: tagsDescription[index],
                   price: price[index]
                 );
               },

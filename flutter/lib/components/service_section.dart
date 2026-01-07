@@ -13,11 +13,10 @@ class ServiceSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 20, right: 20, top: 20),
+      margin: EdgeInsets.only(left: 20, right: 20, top: 15),
       child: Column(
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 "Services",
@@ -27,16 +26,6 @@ class ServiceSection extends StatelessWidget {
                   letterSpacing: 0.2,
                   height: 1.2,
                   color: Colors.white,
-                ),
-              ),
-              Text(
-                "View All",
-                style: GoogleFonts.poppins(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  letterSpacing: 0.2,
-                  height: 1.2,
-                  color: const Color(0xFF7A88F2),
                 ),
               ),
             ], 

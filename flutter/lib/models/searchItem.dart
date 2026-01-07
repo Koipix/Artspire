@@ -6,6 +6,7 @@ class SearchItem {
   final String pImgPath;
   final String tag;
   final String description;
+  final String details;
   final bool isNewOffer;
   final double price;
   final double rating;
@@ -19,6 +20,7 @@ class SearchItem {
     required this.pImgPath, 
     required this.tag,
     required this.description,
+    required this.details,
     required this.isNewOffer,
     required this.price,
     required this.rating,
