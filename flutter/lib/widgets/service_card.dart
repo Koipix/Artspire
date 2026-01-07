@@ -11,41 +11,45 @@ class ServiceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 150,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            margin: EdgeInsets.only(bottom: 10),
-            width: 150,
-            height: 160,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-            ),
-            clipBehavior: Clip.antiAlias,
-            child: Stack(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(imgPath),
-                      fit: BoxFit.cover,
+          AspectRatio(
+            aspectRatio: 1,
+            child: Container(
+              margin: EdgeInsets.only(bottom: 10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              clipBehavior: Clip.antiAlias,
+              child: Stack(
+                children: [
+                  Positioned.fill(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(imgPath),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ), //Img 
+                  ),
+                  Positioned.fill(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter,
+                          colors: [
+                            Colors.black.withValues(alpha: 140),
+                            Colors.transparent,
+                          ],
+                        ),
+                      ),
                     ),
                   ),
-                ), //Img 
-                Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.bottomCenter,
-                      end: Alignment.topCenter,
-                      colors: [
-                        Colors.black.withValues(alpha: 140),
-                        Colors.transparent,
-                      ],
-                    ),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           Text(
@@ -54,7 +58,6 @@ class ServiceCard extends StatelessWidget {
               fontSize: 16,
               fontWeight: FontWeight.w600,
               letterSpacing: 0.2,
-              height: 1.2,
               color: Colors.white,
             ),
           ),
@@ -64,7 +67,6 @@ class ServiceCard extends StatelessWidget {
               fontSize: 14,
               fontWeight: FontWeight.w400,
               letterSpacing: 0.2,
-              height: 1.7,
               color: const Color(0xFFC5C2D2),
             ),
           ),
@@ -74,7 +76,6 @@ class ServiceCard extends StatelessWidget {
               fontSize: 16,
               fontWeight: FontWeight.w600,
               letterSpacing: 0.2,
-              height: 1.5,
               color: Colors.white, 
             ),
           ),

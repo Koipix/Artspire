@@ -13,29 +13,34 @@ class ServiceSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 20, right: 20, top: 15),
+      margin: EdgeInsets.only(left: 20, right: 20, top: 10),
       child: Column(
         children: [
           Row(
             children: [
               Text(
-                "Services",
+                "Commisions",
                 style: GoogleFonts.poppins(
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
                   letterSpacing: 0.2,
-                  height: 1.2,
                   color: Colors.white,
                 ),
               ),
             ], 
           ), //Services Heading
           Container(
-            margin: EdgeInsets.only(top: 15),
-            height: 250,
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
+            margin: EdgeInsets.only(top: 10),
+            child: GridView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
               itemCount: tags.length, 
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 12,
+                mainAxisSpacing: 10,
+                childAspectRatio: 0.7,
+              ),
               itemBuilder: (BuildContext context, int index) {
                 return ServiceCard(
                   imgPath: pImgPath[index], 
@@ -43,9 +48,6 @@ class ServiceSection extends StatelessWidget {
                   price: price[index]
                 );
               },
-              separatorBuilder: (context, index) {
-                return const SizedBox(width: 18);
-              }
             ),
           ),
         ],
