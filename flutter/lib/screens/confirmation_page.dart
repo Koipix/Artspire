@@ -63,6 +63,8 @@ class _PurchaseConfirmationState extends State<PurchaseConfirmation> {
               onPriceChange: (newPrice) {
                 setState(() => _totalPrice = newPrice);
               },
+              monetizationRate: widget.item.monetizationRate,
+              commercialRate: widget.item.commercialRate,
             ),
             PaymentMethods(),
             ArtDetails(
@@ -180,9 +182,13 @@ class BuyingOptions extends StatefulWidget {
     super.key,
     required this.basePrice,
     required this.onPriceChange,
+    required this.monetizationRate,
+    required this.commercialRate
   });
   
   final double basePrice;
+  final double monetizationRate;
+  final double commercialRate;
   final void Function(double newPrice) onPriceChange;
 
   State<BuyingOptions> createState() => _BuyingOptionsState();
@@ -196,11 +202,11 @@ class _BuyingOptionsState extends State<BuyingOptions> {
     double price = widget.basePrice;
     
     if (_monetized) {
-      price *= 1.5;
+      price *= widget.monetizationRate;
     }
 
     if (_commercialized) {
-      price *= 2;
+      price *= widget.commercialRate;
     }
 
     widget.onPriceChange(price);
@@ -274,7 +280,7 @@ class _BuyingOptionsState extends State<BuyingOptions> {
                 ],
               ),
               Text(
-                "+50%",
+                "+${(widget.monetizationRate - 1) * 100}%",
                 style: GoogleFonts.poppins(
                   fontSize: 16, 
                   fontWeight: FontWeight.w400,
@@ -313,7 +319,7 @@ class _BuyingOptionsState extends State<BuyingOptions> {
                 ],
               ),
               Text(
-                "+100%",
+                "+${((widget.commercialRate - 1)*100).toStringAsFixed(0)}%",
                 style: GoogleFonts.poppins(
                   fontSize: 16, 
                   fontWeight: FontWeight.w400,
@@ -542,7 +548,7 @@ class _AcceptSectionState extends State<AcceptSection> {
                     child: Text(
                       widget.isTermsAccepted
                       ? "Submit request"
-                      : "Accept terms to send a request",
+                      : "Accept terms to submit a request",
                       style: GoogleFonts.poppins(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,

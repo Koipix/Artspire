@@ -8,6 +8,8 @@ export interface ArtItem {
   details: string | null;
   image_url: string;
   price: number;
+  monetization_rate: number;
+  commercial_rate: number;
   category: string;
   status: string;
   is_new_offer: boolean;

@@ -12,6 +12,8 @@ class ArtItem {
   final String date;
   final bool isNewOffer;
   final double price;
+  final double monetizationRate;
+  final double commercialRate;
   final double rating;
   final int rateAmount;
 
@@ -29,6 +31,8 @@ class ArtItem {
     required this.date,
     required this.isNewOffer,
     required this.price,
+    required this.monetizationRate,
+    required this.commercialRate,
     required this.rating,
     required this.rateAmount,
   });
@@ -48,6 +52,8 @@ class ArtItem {
       date: json["created_at"],
       isNewOffer: json["is_new_offer"],
       price: json["price"],
+      monetizationRate: json["monetization_rate"],
+      commercialRate: json["commercial_rate"],
       rating: json["avgRating"],
       rateAmount: json["ratingCount"]
     );
