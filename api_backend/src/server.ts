@@ -1,0 +1,67 @@
+import express, { Request, Response } from 'express';
+import { ArtItemWithArtist } from './models/ArtItem.ts';
+
+const item: ArtItemWithArtist[] = [
+  {
+    id: 1,
+    title: "YCH - Full Body Illustration",
+    description: "lorem ipsum",
+    details: "loremi impsumi",
+    price: 3500,
+    image_url: "https://danbooru.donmai.us/posts/10570730",
+    category: "Illustration",
+    status: "Open",
+    is_new_offer: true,
+    created_at: new Date(),
+    artist: {
+      id: 25,
+      username: "Arona",
+      pfp_url: "https://cdn.donmai.us/original/dc/fe/dcfe825ea857757a414aec1910c7f0b1.jpg",
+      bio: "your pretty princess",
+      custom_tos: "bites"
+    },
+  },
+  {
+    id: 2,
+    title: "YCH - Full Body Illustration",
+    description: "lorem ipsum",
+    details: "loremi impsumi",
+    price: 3500,
+    image_url: "https://danbooru.donmai.us/posts/10570730",
+    category: "Illustration",
+    status: "Open",
+    is_new_offer: true,
+    created_at: new Date(),
+    artist: {
+      id: 25,
+      username: "Arona",
+      pfp_url: "https://cdn.donmai.us/original/dc/fe/dcfe825ea857757a414aec1910c7f0b1.jpg",
+      bio: "your pretty princess",
+      custom_tos: "bites"
+    },
+  },
+];
+
+const server = express();
+const port = 3000;
+
+server.get('/', (req: Request, res: Response) => {
+  res.send("nyallo!");
+});
+
+
+export const getItems = async (req: Request, res: Response) => {
+  try {
+
+    setTimeout(() => {
+      res.status(200).json(item);
+    }, 500);
+
+  } catch (err) {
+    console.error("err:", err);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+}
+
+
+export default server;
