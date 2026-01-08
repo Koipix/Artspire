@@ -9,8 +9,9 @@ import 'package:artspire/screens/searchpage.dart';
 import 'package:artspire/screens/searchpage_card.dart';
 import 'package:artspire/screens/accountpage.dart';
 import 'package:artspire/screens/confirmation_page.dart';
-import 'package:go_router/go_router.dart';
 import 'package:artspire/screens/personalinformation.dart';
+import 'package:artspire/models/artItem.dart';
+import 'package:go_router/go_router.dart';
 
 final router = GoRouter(
   initialLocation: '/home',
@@ -25,13 +26,19 @@ final router = GoRouter(
         GoRoute(
           path: '/search',
           pageBuilder: (context, state) =>
-              NoTransitionPage(child: SearchPage()),
+            NoTransitionPage(child: SearchPage()),
           routes: [
             GoRoute(
               path: ':id',
               pageBuilder: (context, state) {
                 final id = int.parse(state.pathParameters['id']!);
-                return NoTransitionPage(child: SearchCardDetails(id: id));
+                final item = state.extra as ArtItem;
+                return NoTransitionPage(
+                  child: SearchCardDetails(
+                    id: id, 
+                    item: item,
+                  )
+                );
               },
             ),
           ],
@@ -86,7 +93,13 @@ final router = GoRouter(
       path: '/search/:id/details',
       pageBuilder: (context, state) {
         final id = int.parse(state.pathParameters['id']!);
-        return NoTransitionPage(child: PurchaseConfirmation(id: id));
+        final item = state.extra as ArtItem;
+        return NoTransitionPage(
+          child: PurchaseConfirmation(
+            id: id, 
+            item: item,
+          )
+        );
       },
     ),
   ],

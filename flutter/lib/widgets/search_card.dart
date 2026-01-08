@@ -34,7 +34,7 @@ class SearchCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(6),
                 image: item.imgUrl.isNotEmpty 
                 ? DecorationImage(
-                    image: AssetImage(item.imgUrl),
+                    image: NetworkImage(item.imgUrl),
                     fit: BoxFit.cover
                 ) : null, 
               ),
@@ -108,7 +108,7 @@ class SearchCard extends StatelessWidget {
                           children: [
                             CircleAvatar(
                               radius: 10,
-                              backgroundImage: AssetImage(item.pImgUrl),
+                              backgroundImage: NetworkImage(item.pImgUrl),
                             ),
                             const SizedBox(width: 6),
                             Text(

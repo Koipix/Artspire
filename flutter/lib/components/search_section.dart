@@ -18,7 +18,14 @@ class SearchSection extends StatelessWidget {
           itemCount: items.length, 
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
-              onTap: () => context.push("/search/${items[index].id}"),
+              onTap: () {
+                final item = items[index];
+
+                context.push(
+                  "/search/${items[index].id}",
+                  extra: item 
+                );
+              },
               child: SearchCard(item: items[index]),
             ); 
           }, 

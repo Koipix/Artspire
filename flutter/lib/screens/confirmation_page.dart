@@ -8,76 +8,58 @@ class PurchaseConfirmation extends StatefulWidget {
   PurchaseConfirmation({
     super.key,
     required this.id,
+    required this.item
   });
 
   final int id;
+  final ArtItem item;
 
   @override
   State<PurchaseConfirmation> createState() => _PurchaseConfirmationState();
 }
 
 class _PurchaseConfirmationState extends State<PurchaseConfirmation> {
-  late Future<ArtItem> _itemFuture;
-
-  @override
-  void initState() {
-    super.initState();
-    _itemFuture = ApiService.fetchItemById(widget.id);
-  }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<ArtItem>(
-      future: _itemFuture,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(
-            child: CircularProgressIndicator() 
-          );
-        }
-
-        final item = snapshot.data!; 
-
-        return Scaffold(
-          backgroundColor: const Color(0xFF21212E),
-          appBar: AppBar(
-            centerTitle: true,
-            backgroundColor: Colors.transparent,
-            leading: IconButton(
-              icon: SvgPicture.asset(
-                "assets/icons/XButton.svg"
-              ),
-              onPressed: () {
-                Navigator.of(context).maybePop();
-              },
-            ) 
+    return Scaffold(
+      backgroundColor: const Color(0xFF21212E),
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          icon: SvgPicture.asset(
+            "assets/icons/XButton.svg"
           ),
-          body: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                PriceDetails(
-                  item: item,
-                ),
-                HeaderImage(
-                  item: item,
-                ),
-                BuyingOptions(),
-                PaymentMethods(),
-                ArtDetails(
-                  item: item,
-                ),
-                TermsOfService(
-                  item: item,
-                ),
-                AcceptSection(
-                  item: item,
-                ),
-              ],
+          onPressed: () {
+            Navigator.of(context).maybePop();
+          },
+        ) 
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            PriceDetails(
+              item: widget.item,
             ),
-          ),
-        );
-      },
+            HeaderImage(
+              item: widget.item,
+            ),
+            BuyingOptions(),
+            PaymentMethods(),
+            ArtDetails(
+              item: widget.item,
+            ),
+            TermsOfService(
+              item: widget.item,
+            ),
+            AcceptSection(
+              item: widget.item,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -152,7 +134,7 @@ class HeaderImage extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             image: item!.imgUrl.isNotEmpty
             ? DecorationImage(
-              image: AssetImage(item!.imgUrl),
+              image: NetworkImage(item!.imgUrl),
               fit: BoxFit.cover
             ) : null, 
           ), 

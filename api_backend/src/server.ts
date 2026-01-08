@@ -4,11 +4,11 @@ import { ArtItemWithArtist } from './models/ArtItem';
 const item: ArtItemWithArtist[] = [
   {
     id: 1,
-    title: "YCH - Full Body Illustration",
+    title: "YCH - Full Illustration",
     description: "lorem ipsum",
     details: "loremi impsumi",
     price: 3500,
-    image_url: "https://danbooru.donmai.us/posts/10570730",
+    image_url:"https://cdn.donmai.us/original/05/b6/05b6f0fe636667a8962b0aaebd6e89a9.png",
     category: "Illustration",
     status: "Open",
     is_new_offer: true,
@@ -25,11 +25,11 @@ const item: ArtItemWithArtist[] = [
   },
   {
     id: 2,
-    title: "YCH - Animated Stream Cover",
+    title: "YCH - Stream Cover",
     description: "lorem ipsum",
     details: "loremi impsumi",
     price: 1500,
-    image_url: "https://danbooru.donmai.us/posts/10570730",
+    image_url: "https://cdn.donmai.us/original/ec/26/ec2652f05ba6669dedff19d714c74c4d.jpg",
     category: "Illustration",
     status: "Open",
     is_new_offer: true,

@@ -15,6 +15,15 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
 
   int selectedIndex = 0;
+
+  late Future<List<ArtItem>> _itemsFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _itemsFuture = ApiService.fetchItems();
+  }
+  
   void _updateCategory(index) {
     setState(() {
       selectedIndex = index;
@@ -24,7 +33,7 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<ArtItem>>(
-      future: ApiService.fetchItems(),
+      future: _itemsFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
@@ -34,7 +43,7 @@ class _SearchPageState extends State<SearchPage> {
 
         if (snapshot.hasError) {
           return Center(
-            child: Text("Error: ${snapshot.error}")
+            child: Text("Something went wrong...")
           );
         }
 
