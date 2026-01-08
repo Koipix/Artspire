@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:artspire/models/artItem.dart';
 import 'package:artspire/apiService.dart';
 
@@ -192,6 +193,12 @@ class BuySection extends StatelessWidget {
     required this.item,
   });
 
+  static final _formatter = NumberFormat.currency(
+    locale: 'en_PH',
+    symbol: '₱',
+    decimalDigits: 2
+  );
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -213,7 +220,7 @@ class BuySection extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "₱${item?.price.toString()}" ?? "0",
+                  _formatter.format(item!.price),
                   style: GoogleFonts.poppins(
                     fontSize: 22, 
                     fontWeight: FontWeight.w600,

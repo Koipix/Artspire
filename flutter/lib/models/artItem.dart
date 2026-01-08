@@ -3,6 +3,7 @@ class ArtItem {
   final String serviceName;
   final String description;
   final String details;
+  final String customToS;
   final String artistName;
   final String imgUrl;
   final String pImgUrl;
@@ -19,6 +20,7 @@ class ArtItem {
     required this.serviceName,
     required this.description,
     required this.details,
+    required this.customToS,
     required this.artistName,
     required this.imgUrl,
     required this.pImgUrl, 
@@ -38,6 +40,7 @@ class ArtItem {
       description: json["description"],
       details: json["details"],
       artistName: json["artist"]["username"],
+      customToS: json["artist"]["custom_tos"],
       imgUrl: json["image_url"],
       pImgUrl: json["artist"]["pfp_url"],
       category: json["category"],
