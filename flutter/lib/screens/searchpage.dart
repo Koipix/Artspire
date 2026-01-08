@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:artspire/widgets/searcbar.dart';
 import 'package:artspire/components/search_section.dart';
+import 'package:artspire/models/artItem.dart';
 import 'package:artspire/apiService.dart';
 
 class SearchPage extends StatefulWidget {
@@ -13,15 +14,6 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
 
-  // List<SearchItem> items = DataRep.searchItems;
-
-  //filter logic
-  List<SearchItem> filteredItems() {
-    if (selectedIndex == 0) return items;
-    const categoryTabs = ["Illustration", "Animation", "Emotes", "Rating"];
-    return items.where((e) => e.tag == categoryTabs[selectedIndex - 1]).toList();
-  }
-
   int selectedIndex = 0;
   void _updateCategory(index) {
     setState(() {
@@ -31,21 +23,46 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        PageHeader(),
-        Searchbar(
-          hintMsg: "Search"
-        ),
-        CategoryTab(
-          selectedIndex: selectedIndex,
-          onSelected: _updateCategory,
-        ),
-        SearchSection(
-          items: filteredItems(),
-        ),
-      ], 
+    return FutureBuilder<List<ArtItem>>(
+      future: ApiService.fetchItems(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(
+            child: CircularProgressIndicator() 
+          );
+        }
+
+        if (snapshot.hasError) {
+          return Center(
+            child: Text("Error: ${snapshot.error}")
+          );
+        }
+
+        final items = snapshot.data!;
+
+        List<ArtItem> filteredItems() {
+          if (selectedIndex == 0) return items;
+          const categoryTabs = ["Illustration", "Animation", "Emotes", "Rating"];
+          return items
+            .where((e) => e.category == categoryTabs[selectedIndex - 1])
+            .toList();
+        }
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            PageHeader(),
+            Searchbar(hintMsg: "Search"),
+            CategoryTab(
+              selectedIndex: selectedIndex,
+              onSelected: _updateCategory,
+            ),
+            SearchSection(
+              items: filteredItems(),
+            ),
+          ],
+        );
+      }
     );
   }
 }

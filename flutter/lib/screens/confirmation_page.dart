@@ -1,66 +1,89 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:artspire/models/searchItem.dart';
-import 'package:artspire/data_rep.dart';
+import 'package:artspire/models/artItem.dart';
+import 'package:artspire/apiService.dart';
 
-class PurchaseConfirmation extends StatelessWidget {
+class PurchaseConfirmation extends StatefulWidget {
   PurchaseConfirmation({
     super.key,
     required this.id,
-  }) : item = DataRep.searchItems.firstWhere((e) => e.id == id);
+  });
 
   final int id;
-  final List<SearchItem> items = DataRep.searchItems; 
 
-  final SearchItem item;
+  @override
+  State<PurchaseConfirmation> createState() => _PurchaseConfirmationState();
+}
+
+class _PurchaseConfirmationState extends State<PurchaseConfirmation> {
+  late Future<ArtItem> _itemFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _itemFuture = ApiService.fetchItemById(widget.id);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF21212E),
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        leading: IconButton(
-          icon: SvgPicture.asset(
-            "assets/icons/XButton.svg"
+    return FutureBuilder<ArtItem>(
+      future: _itemFuture,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(
+            child: CircularProgressIndicator() 
+          );
+        }
+
+        final item = snapshot.data!; 
+
+        return Scaffold(
+          backgroundColor: const Color(0xFF21212E),
+          appBar: AppBar(
+            centerTitle: true,
+            backgroundColor: Colors.transparent,
+            leading: IconButton(
+              icon: SvgPicture.asset(
+                "assets/icons/XButton.svg"
+              ),
+              onPressed: () {
+                Navigator.of(context).maybePop();
+              },
+            ) 
           ),
-          onPressed: () {
-            Navigator.of(context).maybePop();
-          },
-        ) 
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            PriceDetails(
-              item: item,
+          body: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                PriceDetails(
+                  item: item,
+                ),
+                HeaderImage(
+                  item: item,
+                ),
+                BuyingOptions(),
+                PaymentMethods(),
+                ArtDetails(
+                  item: item,
+                ),
+                TermsOfService(
+                  item: item,
+                ),
+                AcceptSection(
+                  item: item,
+                ),
+              ],
             ),
-            HeaderImage(
-              item: item,
-            ),
-            BuyingOptions(),
-            PaymentMethods(),
-            ArtDetails(
-              item: item,
-            ),
-            TermsOfService(
-              item: item,
-            ),
-            AcceptSection(
-              item: item,
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }
 
 class PriceDetails extends StatelessWidget {
-  final SearchItem item;
+  final ArtItem item;
 
   const PriceDetails({
     super.key,
@@ -75,7 +98,7 @@ class PriceDetails extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            item!.cardName ?? 'Item not found',
+            item!.serviceName ?? 'Item not found',
             style: GoogleFonts.poppins(
               fontSize: 24, 
               fontWeight: FontWeight.w700,
@@ -109,7 +132,7 @@ class PriceDetails extends StatelessWidget {
 }
 
 class HeaderImage extends StatelessWidget {
-  final SearchItem? item;
+  final ArtItem? item;
 
   const HeaderImage({
     super.key,
@@ -127,9 +150,9 @@ class HeaderImage extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(10),
-            image: item!.imgPath.isNotEmpty
+            image: item!.imgUrl.isNotEmpty
             ? DecorationImage(
-              image: AssetImage(item!.imgPath),
+              image: AssetImage(item!.imgUrl),
               fit: BoxFit.cover
             ) : null, 
           ), 
@@ -308,7 +331,7 @@ class PaymentMethods extends StatelessWidget {
 }
 
 class ArtDetails extends StatelessWidget {
-  final SearchItem item;
+  final ArtItem item;
 
   const ArtDetails({
     super.key,
@@ -355,7 +378,7 @@ class ArtDetails extends StatelessWidget {
 }
 
 class TermsOfService extends StatelessWidget {
-  final SearchItem item;
+  final ArtItem item;
 
   const TermsOfService({
     super.key,
@@ -407,7 +430,7 @@ class AcceptSection extends StatefulWidget {
     required this.item,
   });
 
-  final SearchItem item;
+  final ArtItem item;
 
   State<AcceptSection> createState() => _AcceptSectionState();
 }

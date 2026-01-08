@@ -2,10 +2,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:artspire/models/searchItem.dart';
+import 'package:artspire/models/artItem.dart';
 
 class SearchCard extends StatelessWidget {
-  final SearchItem item;
+  final ArtItem item;
 
   const SearchCard({super.key, required this.item});
 
@@ -32,9 +32,9 @@ class SearchCard extends StatelessWidget {
               BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(6),
-                image: item.imgPath.isNotEmpty 
+                image: item.imgUrl.isNotEmpty 
                 ? DecorationImage(
-                    image: AssetImage(item.imgPath),
+                    image: AssetImage(item.imgUrl),
                     fit: BoxFit.cover
                 ) : null, 
               ),
@@ -91,7 +91,7 @@ class SearchCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      item.cardName,
+                      item.serviceName,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: GoogleFonts.poppins(
@@ -108,7 +108,7 @@ class SearchCard extends StatelessWidget {
                           children: [
                             CircleAvatar(
                               radius: 10,
-                              backgroundImage: AssetImage(item.pImgPath),
+                              backgroundImage: AssetImage(item.pImgUrl),
                             ),
                             const SizedBox(width: 6),
                             Text(

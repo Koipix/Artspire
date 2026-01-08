@@ -1,10 +1,10 @@
 import 'package:artspire/widgets/search_card.dart';
 import 'package:flutter/material.dart';
-import 'package:artspire/models/searchItem.dart';
+import 'package:artspire/models/artItem.dart';
 import 'package:go_router/go_router.dart';
 
 class SearchSection extends StatelessWidget {
-  final List<SearchItem> items;
+  final List<ArtItem> items;
 
   SearchSection({super.key, required this.items});
 

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
-import 'package:artspire/models/searchItem.dart';
-import 'package:artspire/data_rep.dart';
+import 'package:artspire/models/artItem.dart';
+import 'package:artspire/apiService.dart';
 
 class SearchCardDetails extends StatelessWidget {
   final int id;
@@ -13,52 +13,68 @@ class SearchCardDetails extends StatelessWidget {
     required this.id,
   });
 
-  final List<SearchItem> items = DataRep.searchItems; 
-  
-  SearchItem? getItem() {
-    return items.firstWhere((e) => e.id == id);
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF21212E),
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        leading: IconButton(
-          icon: SvgPicture.asset(
-            "assets/icons/XButton.svg"
+    return FutureBuilder<List<ArtItem>>(
+      future: ApiService.fetchItems(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(
+            child: CircularProgressIndicator() 
+          );
+        }
+
+        if (snapshot.hasError) { return Center(
+            child: Text("Error: ${snapshot.error}")
+          );
+        }
+
+        final items = snapshot.data!;
+
+        ArtItem getItem() {
+          return items.firstWhere((e) => e.id == id);
+        }
+
+        return Scaffold(
+          backgroundColor: const Color(0xFF21212E),
+          appBar: AppBar(
+            centerTitle: true,
+            backgroundColor: Colors.transparent,
+            leading: IconButton(
+              icon: SvgPicture.asset(
+                "assets/icons/XButton.svg"
+              ),
+              onPressed: () {
+                Navigator.of(context).maybePop();
+              },
+            ) 
           ),
-          onPressed: () {
-            Navigator.of(context).maybePop();
-          },
-        ) 
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          HeaderImage(
-            item: getItem(),
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              HeaderImage(
+                item: getItem(),
+              ),
+              HeaderDetails(
+                item: getItem(),
+              ),
+              CardDescription(
+                item: getItem(),
+              ),
+              Spacer(),
+              BuySection(
+                item: getItem(),
+              ),
+            ],
           ),
-          HeaderDetails(
-            item: getItem(),
-          ),
-          CardDescription(
-            item: getItem(),
-          ),
-          Spacer(),
-          BuySection(
-            item: getItem(),
-          ),
-        ],
-      ),
+        );
+      }
     );
   }
 }
 
 class HeaderImage extends StatelessWidget {
-  final SearchItem? item;
+  final ArtItem? item;
 
   const HeaderImage({
     super.key,
@@ -76,9 +92,9 @@ class HeaderImage extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(10),
-            image: item?.imgPath.isNotEmpty ?? false
+            image: item?.imgUrl.isNotEmpty ?? false
             ? DecorationImage(
-              image: AssetImage(item!.imgPath),
+              image: AssetImage(item!.imgUrl),
               fit: BoxFit.cover
             ) : null, 
           ), 
@@ -89,7 +105,7 @@ class HeaderImage extends StatelessWidget {
 }
 
 class HeaderDetails extends StatelessWidget {
-  final SearchItem? item;
+  final ArtItem? item;
 
   const HeaderDetails({
     super.key,
@@ -107,7 +123,7 @@ class HeaderDetails extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                item?.cardName ?? 'Item not found',
+                item?.serviceName ?? 'Item not found',
                 style: GoogleFonts.poppins(
                   fontSize: 22, 
                   fontWeight: FontWeight.w500,
@@ -119,13 +135,13 @@ class HeaderDetails extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 10,
-                    backgroundImage: (item?.pImgPath != null && item!.pImgPath.isNotEmpty)
-                        ? AssetImage(item!.pImgPath)
+                    backgroundImage: (item?.pImgUrl != null && item!.pImgUrl.isNotEmpty)
+                        ? AssetImage(item!.pImgUrl)
                         : null,
                   ),
                   const SizedBox(width: 10),
                   Text(
-                    item?.artistName ?? '',
+                    item!.artistName,
                     style: GoogleFonts.poppins(
                       fontSize: 14, 
                       fontWeight: FontWeight.w400,
@@ -148,7 +164,7 @@ class HeaderDetails extends StatelessWidget {
 }
 
 class CardDescription extends StatelessWidget {
-  final SearchItem? item;
+  final ArtItem? item;
 
   const CardDescription ({
     super.key,
@@ -191,7 +207,7 @@ class CardDescription extends StatelessWidget {
 }
 
 class BuySection extends StatelessWidget {
-  final SearchItem? item;
+  final ArtItem? item;
 
   const BuySection({
     super.key,
