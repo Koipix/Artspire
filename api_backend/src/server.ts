@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { ArtItemWithArtist } from './models/ArtItem.ts';
+import { ArtItemWithArtist } from './models/ArtItem';
 
 const item: ArtItemWithArtist[] = [
   {
@@ -43,7 +43,6 @@ const item: ArtItemWithArtist[] = [
 ];
 
 const server = express();
-const port = 3000;
 
 server.get('/', (req: Request, res: Response) => {
   res.send("nyallo!");

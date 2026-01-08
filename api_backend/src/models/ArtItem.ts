@@ -1,7 +1,7 @@
-import server, { Artist } from './Artist.ts';
+import { Artist } from './Artist';
 
 export interface ArtItem {
-  id: numer;
+  id: number;
   artist_id: number;
   title: string;
   description: string | null;
