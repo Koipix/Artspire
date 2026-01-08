@@ -97,39 +97,42 @@ class HeaderDetails extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 15),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                item?.serviceName ?? 'Item not found',
-                style: GoogleFonts.poppins(
-                  fontSize: 22, 
-                  fontWeight: FontWeight.w500,
-                  color: Colors.white
+          Flexible(
+            child: Column(
+              spacing: 5,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  item?.serviceName ?? 'Item not found',
+                  style: GoogleFonts.poppins(
+                    fontSize: 22, 
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white
+                  ),
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CircleAvatar(
-                    radius: 10,
-                    backgroundImage: (item?.pImgUrl != null && item!.pImgUrl.isNotEmpty)
-                        ? AssetImage(item!.pImgUrl)
-                        : null,
-                  ),
-                  const SizedBox(width: 10),
-                  Text(
-                    item!.artistName,
-                    style: GoogleFonts.poppins(
-                      fontSize: 14, 
-                      fontWeight: FontWeight.w400,
-                      color: const Color(0xFFC5C2D2),
+                Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 10,
+                      backgroundImage: (item?.pImgUrl != null && item!.pImgUrl.isNotEmpty)
+                      ? NetworkImage(item!.pImgUrl)
+                      : null,
                     ),
-                  ),
-                ],
-              ),
-            ],
+                    const SizedBox(width: 10),
+                    Text(
+                      item!.artistName,
+                      style: GoogleFonts.poppins(
+                        fontSize: 14, 
+                        fontWeight: FontWeight.w400,
+                        color: const Color(0xFFC5C2D2),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
           SvgPicture.asset(
             "assets/icons/HeartReact.svg",
