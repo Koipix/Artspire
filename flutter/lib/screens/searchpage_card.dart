@@ -6,12 +6,10 @@ import 'package:artspire/models/artItem.dart';
 import 'package:artspire/apiService.dart';
 
 class SearchCardDetails extends StatelessWidget {
-  final int id;
   final ArtItem item;
 
   SearchCardDetails({
     super.key,
-    required this.id,
     required this.item,
   });
 
@@ -54,7 +52,7 @@ class SearchCardDetails extends StatelessWidget {
 }
 
 class HeaderImage extends StatelessWidget {
-  final ArtItem? item;
+  final ArtItem item;
 
   const HeaderImage({
     super.key,
@@ -85,7 +83,7 @@ class HeaderImage extends StatelessWidget {
 }
 
 class HeaderDetails extends StatelessWidget {
-  final ArtItem? item;
+  final ArtItem item;
 
   const HeaderDetails({
     super.key,
@@ -144,7 +142,7 @@ class HeaderDetails extends StatelessWidget {
 }
 
 class CardDescription extends StatelessWidget {
-  final ArtItem? item;
+  final ArtItem item;
 
   const CardDescription ({
     super.key,
@@ -187,7 +185,7 @@ class CardDescription extends StatelessWidget {
 }
 
 class BuySection extends StatelessWidget {
-  final ArtItem? item;
+  final ArtItem item;
 
   const BuySection({
     super.key,

@@ -31,11 +31,9 @@ final router = GoRouter(
             GoRoute(
               path: ':id',
               pageBuilder: (context, state) {
-                final id = int.parse(state.pathParameters['id']!);
                 final item = state.extra as ArtItem;
                 return NoTransitionPage(
                   child: SearchCardDetails(
-                    id: id, 
                     item: item,
                   )
                 );

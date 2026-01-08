@@ -22,7 +22,7 @@ class SearchSection extends StatelessWidget {
                 final item = items[index];
 
                 context.push(
-                  "/search/${items[index].id}",
+                  "/search/${item.id}",
                   extra: item 
                 );
               },
