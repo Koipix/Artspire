@@ -11,6 +11,8 @@ export interface ArtItem {
   category: string;
   status: string;
   is_new_offer: boolean;
+  avgRating: number;
+  ratingCount: number;
   created_at: Date;
 }
 
