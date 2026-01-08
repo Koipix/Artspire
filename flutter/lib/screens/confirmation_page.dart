@@ -5,10 +5,7 @@ import 'package:artspire/models/artItem.dart';
 import 'package:artspire/apiService.dart';
 
 class PurchaseConfirmation extends StatefulWidget {
-  PurchaseConfirmation({
-    super.key,
-    required this.id,
-  });
+  PurchaseConfirmation({super.key, required this.id});
 
   final int id;
 
@@ -31,12 +28,10 @@ class _PurchaseConfirmationState extends State<PurchaseConfirmation> {
       future: _itemFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(
-            child: CircularProgressIndicator() 
-          );
+          return const Center(child: CircularProgressIndicator());
         }
 
-        final item = snapshot.data!; 
+        final item = snapshot.data!;
 
         return Scaffold(
           backgroundColor: const Color(0xFF21212E),
@@ -44,35 +39,23 @@ class _PurchaseConfirmationState extends State<PurchaseConfirmation> {
             centerTitle: true,
             backgroundColor: Colors.transparent,
             leading: IconButton(
-              icon: SvgPicture.asset(
-                "assets/icons/XButton.svg"
-              ),
+              icon: SvgPicture.asset("assets/icons/XButton.svg"),
               onPressed: () {
                 Navigator.of(context).maybePop();
               },
-            ) 
+            ),
           ),
           body: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                PriceDetails(
-                  item: item,
-                ),
-                HeaderImage(
-                  item: item,
-                ),
+                PriceDetails(item: item),
+                HeaderImage(item: item),
                 BuyingOptions(),
                 PaymentMethods(),
-                ArtDetails(
-                  item: item,
-                ),
-                TermsOfService(
-                  item: item,
-                ),
-                AcceptSection(
-                  item: item,
-                ),
+                ArtDetails(item: item),
+                TermsOfService(item: item),
+                AcceptSection(item: item),
               ],
             ),
           ),
@@ -85,10 +68,7 @@ class _PurchaseConfirmationState extends State<PurchaseConfirmation> {
 class PriceDetails extends StatelessWidget {
   final ArtItem item;
 
-  const PriceDetails({
-    super.key,
-    required this.item,
-  });
+  const PriceDetails({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
@@ -100,9 +80,9 @@ class PriceDetails extends StatelessWidget {
           Text(
             item!.serviceName ?? 'Item not found',
             style: GoogleFonts.poppins(
-              fontSize: 24, 
+              fontSize: 24,
               fontWeight: FontWeight.w700,
-              color: Colors.white
+              color: Colors.white,
             ),
           ),
           Row(
@@ -110,7 +90,7 @@ class PriceDetails extends StatelessWidget {
               Text(
                 "Starting from ",
                 style: GoogleFonts.poppins(
-                  fontSize: 20, 
+                  fontSize: 20,
                   fontWeight: FontWeight.w500,
                   color: const Color(0xFFC5C2D2),
                 ),
@@ -118,7 +98,7 @@ class PriceDetails extends StatelessWidget {
               Text(
                 "₱${item!.price.toString()}",
                 style: GoogleFonts.poppins(
-                  fontSize: 20, 
+                  fontSize: 20,
                   fontWeight: FontWeight.w700,
                   color: const Color(0xFF7A88F2),
                 ),
@@ -134,10 +114,7 @@ class PriceDetails extends StatelessWidget {
 class HeaderImage extends StatelessWidget {
   final ArtItem? item;
 
-  const HeaderImage({
-    super.key,
-    required this.item,
-  });
+  const HeaderImage({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
@@ -151,14 +128,15 @@ class HeaderImage extends StatelessWidget {
             color: Colors.white,
             borderRadius: BorderRadius.circular(10),
             image: item!.imgUrl.isNotEmpty
-            ? DecorationImage(
-              image: AssetImage(item!.imgUrl),
-              fit: BoxFit.cover
-            ) : null, 
-          ), 
+                ? DecorationImage(
+                    image: AssetImage(item!.imgUrl),
+                    fit: BoxFit.cover,
+                  )
+                : null,
+          ),
         ),
       ),
-    ); 
+    );
   }
 }
 
@@ -169,7 +147,6 @@ class BuyingOptions extends StatefulWidget {
 }
 
 class _BuyingOptionsState extends State<BuyingOptions> {
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -191,7 +168,7 @@ class _BuyingOptionsState extends State<BuyingOptions> {
                   Text(
                     "Personal",
                     style: GoogleFonts.poppins(
-                      fontSize: 16, 
+                      fontSize: 16,
                       fontWeight: FontWeight.w400,
                       color: Colors.white,
                     ),
@@ -201,7 +178,7 @@ class _BuyingOptionsState extends State<BuyingOptions> {
               Text(
                 "Included",
                 style: GoogleFonts.poppins(
-                  fontSize: 16, 
+                  fontSize: 16,
                   fontWeight: FontWeight.w400,
                   color: const Color(0xFFC5C2D2),
                 ),
@@ -222,7 +199,7 @@ class _BuyingOptionsState extends State<BuyingOptions> {
                   Text(
                     "Monetized",
                     style: GoogleFonts.poppins(
-                      fontSize: 16, 
+                      fontSize: 16,
                       fontWeight: FontWeight.w400,
                       color: Colors.white,
                     ),
@@ -232,7 +209,7 @@ class _BuyingOptionsState extends State<BuyingOptions> {
               Text(
                 "+50%",
                 style: GoogleFonts.poppins(
-                  fontSize: 16, 
+                  fontSize: 16,
                   fontWeight: FontWeight.w400,
                   color: const Color(0xFFC5C2D2),
                 ),
@@ -253,7 +230,7 @@ class _BuyingOptionsState extends State<BuyingOptions> {
                   Text(
                     "Commercial",
                     style: GoogleFonts.poppins(
-                      fontSize: 16, 
+                      fontSize: 16,
                       fontWeight: FontWeight.w400,
                       color: Colors.white,
                     ),
@@ -263,7 +240,7 @@ class _BuyingOptionsState extends State<BuyingOptions> {
               Text(
                 "+100%",
                 style: GoogleFonts.poppins(
-                  fontSize: 16, 
+                  fontSize: 16,
                   fontWeight: FontWeight.w400,
                   color: const Color(0xFFC5C2D2),
                 ),
@@ -278,7 +255,7 @@ class _BuyingOptionsState extends State<BuyingOptions> {
 
 class PaymentMethods extends StatelessWidget {
   const PaymentMethods({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -286,10 +263,7 @@ class PaymentMethods extends StatelessWidget {
       margin: const EdgeInsets.only(left: 15, right: 15, top: 15, bottom: 5),
       padding: const EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 10),
       decoration: BoxDecoration(
-        border: Border.all(
-          color: const Color(0xFF383843),
-          width: 2,
-        ),
+        border: Border.all(color: const Color(0xFF383843), width: 2),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
@@ -299,7 +273,7 @@ class PaymentMethods extends StatelessWidget {
           Text(
             "Payment Methods",
             style: GoogleFonts.poppins(
-              fontSize: 20, 
+              fontSize: 20,
               fontWeight: FontWeight.w500,
               color: Colors.white,
             ),
@@ -333,11 +307,8 @@ class PaymentMethods extends StatelessWidget {
 class ArtDetails extends StatelessWidget {
   final ArtItem item;
 
-  const ArtDetails({
-    super.key,
-    required this.item,
-  });
-  
+  const ArtDetails({super.key, required this.item});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -345,10 +316,7 @@ class ArtDetails extends StatelessWidget {
       margin: const EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5),
       padding: const EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 10),
       decoration: BoxDecoration(
-        border: Border.all(
-          color: const Color(0xFF383843),
-          width: 2,
-        ),
+        border: Border.all(color: const Color(0xFF383843), width: 2),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
@@ -358,7 +326,7 @@ class ArtDetails extends StatelessWidget {
           Text(
             "Details",
             style: GoogleFonts.poppins(
-              fontSize: 20, 
+              fontSize: 20,
               fontWeight: FontWeight.w500,
               color: Colors.white,
             ),
@@ -366,7 +334,7 @@ class ArtDetails extends StatelessWidget {
           Text(
             item!.details,
             style: GoogleFonts.poppins(
-              fontSize: 12, 
+              fontSize: 12,
               fontWeight: FontWeight.w300,
               color: const Color(0xFF828282),
             ),
@@ -380,11 +348,8 @@ class ArtDetails extends StatelessWidget {
 class TermsOfService extends StatelessWidget {
   final ArtItem item;
 
-  const TermsOfService({
-    super.key,
-    required this.item,
-  });
-  
+  const TermsOfService({super.key, required this.item});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -392,10 +357,7 @@ class TermsOfService extends StatelessWidget {
       margin: const EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5),
       padding: const EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 10),
       decoration: BoxDecoration(
-        border: Border.all(
-          color: const Color(0xFF383843),
-          width: 2,
-        ),
+        border: Border.all(color: const Color(0xFF383843), width: 2),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
@@ -405,7 +367,7 @@ class TermsOfService extends StatelessWidget {
           Text(
             "${item.artistName}'s Terms of Service",
             style: GoogleFonts.poppins(
-              fontSize: 20, 
+              fontSize: 20,
               fontWeight: FontWeight.w500,
               color: Colors.white,
             ),
@@ -413,7 +375,7 @@ class TermsOfService extends StatelessWidget {
           Text(
             item!.details, //change later
             style: GoogleFonts.poppins(
-              fontSize: 12, 
+              fontSize: 12,
               fontWeight: FontWeight.w300,
               color: const Color(0xFFC5C2D2),
             ),
@@ -425,10 +387,7 @@ class TermsOfService extends StatelessWidget {
 }
 
 class AcceptSection extends StatefulWidget {
-  const AcceptSection({
-    super.key,
-    required this.item,
-  });
+  const AcceptSection({super.key, required this.item});
 
   final ArtItem item;
 
@@ -436,7 +395,6 @@ class AcceptSection extends StatefulWidget {
 }
 
 class _AcceptSectionState extends State<AcceptSection> {
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -456,7 +414,7 @@ class _AcceptSectionState extends State<AcceptSection> {
               Text(
                 "I accept ${widget.item.artistName}'s Terms of Service",
                 style: GoogleFonts.poppins(
-                  fontSize: 13, 
+                  fontSize: 13,
                   fontWeight: FontWeight.w400,
                   color: Colors.white,
                 ),
@@ -468,9 +426,7 @@ class _AcceptSectionState extends State<AcceptSection> {
             children: [
               Expanded(
                 child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 10,
-                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
                   decoration: BoxDecoration(
                     color: const Color(0xFF7A88F2),
                     borderRadius: BorderRadius.circular(8),

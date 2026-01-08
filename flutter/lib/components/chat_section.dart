@@ -6,10 +6,7 @@ import 'package:artspire/models/chatItem.dart';
 class ChatTree extends StatelessWidget {
   final List<ChatItem> chats;
 
-  const ChatTree({
-    super.key,
-    required this.chats
-  });
+  const ChatTree({super.key, required this.chats});
 
   @override
   Widget build(BuildContext context) {

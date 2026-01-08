@@ -21,7 +21,7 @@ class ArtItem {
     required this.details,
     required this.artistName,
     required this.imgUrl,
-    required this.pImgUrl, 
+    required this.pImgUrl,
     required this.category,
     required this.status,
     required this.date,
@@ -46,11 +46,7 @@ class ArtItem {
       isNewOffer: json["is_new_offer"],
       price: json["price"],
       rating: json["avgRating"],
-      rateAmount: json["ratingCount"]
+      rateAmount: json["ratingCount"],
     );
   }
 }
-
-
-
-

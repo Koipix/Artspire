@@ -14,20 +14,18 @@ class HomePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TextHeader(),
-          Searchbar(
-            hintMsg: "Search"
-          ),
+          Searchbar(hintMsg: "Search"),
           PopularSection(),
           ServiceSection(),
         ],
       ),
-    ); 
+    );
   }
 }
 
 class TextHeader extends StatelessWidget {
   const TextHeader({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -56,7 +54,7 @@ class TextHeader extends StatelessWidget {
             ),
           ),
         ],
-      )
+      ),
     );
   }
 }

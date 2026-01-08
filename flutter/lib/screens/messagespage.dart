@@ -13,7 +13,6 @@ class MessagesPage extends StatefulWidget {
 }
 
 class _MessagePageState extends State<MessagesPage> {
-
   int selectedIndex = 0;
   void _updateCategory(index) {
     setState(() {
@@ -44,8 +43,10 @@ class _MessagePageState extends State<MessagesPage> {
   ];
 
   List<ChatItem> filteredItems() {
-    if (selectedIndex == 0) return chats;
-    else return chats.where((e) => e.isRequested).toList();
+    if (selectedIndex == 0)
+      return chats;
+    else
+      return chats.where((e) => e.isRequested).toList();
   }
 
   @override
@@ -55,14 +56,9 @@ class _MessagePageState extends State<MessagesPage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          MessageHeader(), 
-          ChatType(
-            selectedIndex: selectedIndex,
-            onSelected: _updateCategory,
-          ), 
-          ChatTree(
-            chats: filteredItems(),
-          )
+          MessageHeader(),
+          ChatType(selectedIndex: selectedIndex, onSelected: _updateCategory),
+          ChatTree(chats: filteredItems()),
         ],
       ),
     );
@@ -84,7 +80,6 @@ class ChatType extends StatefulWidget {
 }
 
 class _ChatTypeState extends State<ChatType> {
-  
   static const List<String> msgcategs = ["All", "My Requests"];
 
   @override
@@ -102,33 +97,37 @@ class _ChatTypeState extends State<ChatType> {
             child: GestureDetector(
               onTap: () => widget.onSelected(index),
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 3),
-                decoration: isSelected
-                ? BoxDecoration(
-                  color: const Color(0xFF7A88F2),
-                  borderRadius: BorderRadius.circular(8),
-                )
-                : BoxDecoration(
-                  border: Border.all(
-                    color: const Color(0xFF383843),
-                    width: 1,
-                    style: BorderStyle.solid,
-                  ),
-                  borderRadius: BorderRadius.circular(8)
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 13,
+                  vertical: 3,
                 ),
+                decoration: isSelected
+                    ? BoxDecoration(
+                        color: const Color(0xFF7A88F2),
+                        borderRadius: BorderRadius.circular(8),
+                      )
+                    : BoxDecoration(
+                        border: Border.all(
+                          color: const Color(0xFF383843),
+                          width: 1,
+                          style: BorderStyle.solid,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
                 child: Text(
                   msgcategs[index],
                   style: GoogleFonts.poppins(
                     fontSize: isSelected ? 14 : 13,
-                    fontWeight: isSelected ? FontWeight.w500 : FontWeight.normal,
+                    fontWeight: isSelected
+                        ? FontWeight.w500
+                        : FontWeight.normal,
                     color: isSelected ? Colors.white : const Color(0xFFC5C2D2),
                   ),
                 ),
               ),
             ),
           );
-        }
-        ),
+        }),
       ),
     );
   }
@@ -147,14 +146,12 @@ class MessageHeader extends StatelessWidget {
           Text(
             "Messages",
             style: GoogleFonts.poppins(
-              fontSize: 20, 
+              fontSize: 20,
               fontWeight: FontWeight.w500,
-              color: Colors.white
+              color: Colors.white,
             ),
           ),
-          Searchbar(
-            hintMsg: "Search direct messages",
-          ),
+          Searchbar(hintMsg: "Search direct messages"),
         ],
       ),
     );

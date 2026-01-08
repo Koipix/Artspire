@@ -8,10 +8,7 @@ import 'package:artspire/apiService.dart';
 class SearchCardDetails extends StatelessWidget {
   final int id;
 
-  SearchCardDetails({
-    super.key,
-    required this.id,
-  });
+  SearchCardDetails({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +16,11 @@ class SearchCardDetails extends StatelessWidget {
       future: ApiService.fetchItems(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(
-            child: CircularProgressIndicator() 
-          );
+          return const Center(child: CircularProgressIndicator());
         }
 
-        if (snapshot.hasError) { return Center(
-            child: Text("Error: ${snapshot.error}")
-          );
+        if (snapshot.hasError) {
+          return Center(child: Text("Error: ${snapshot.error}"));
         }
 
         final items = snapshot.data!;
@@ -41,34 +35,24 @@ class SearchCardDetails extends StatelessWidget {
             centerTitle: true,
             backgroundColor: Colors.transparent,
             leading: IconButton(
-              icon: SvgPicture.asset(
-                "assets/icons/XButton.svg"
-              ),
+              icon: SvgPicture.asset("assets/icons/XButton.svg"),
               onPressed: () {
                 Navigator.of(context).maybePop();
               },
-            ) 
+            ),
           ),
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              HeaderImage(
-                item: getItem(),
-              ),
-              HeaderDetails(
-                item: getItem(),
-              ),
-              CardDescription(
-                item: getItem(),
-              ),
+              HeaderImage(item: getItem()),
+              HeaderDetails(item: getItem()),
+              CardDescription(item: getItem()),
               Spacer(),
-              BuySection(
-                item: getItem(),
-              ),
+              BuySection(item: getItem()),
             ],
           ),
         );
-      }
+      },
     );
   }
 }
@@ -76,10 +60,7 @@ class SearchCardDetails extends StatelessWidget {
 class HeaderImage extends StatelessWidget {
   final ArtItem? item;
 
-  const HeaderImage({
-    super.key,
-    required this.item,
-  });
+  const HeaderImage({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
@@ -93,24 +74,22 @@ class HeaderImage extends StatelessWidget {
             color: Colors.white,
             borderRadius: BorderRadius.circular(10),
             image: item?.imgUrl.isNotEmpty ?? false
-            ? DecorationImage(
-              image: AssetImage(item!.imgUrl),
-              fit: BoxFit.cover
-            ) : null, 
-          ), 
+                ? DecorationImage(
+                    image: AssetImage(item!.imgUrl),
+                    fit: BoxFit.cover,
+                  )
+                : null,
+          ),
         ),
       ),
-    ); 
+    );
   }
 }
 
 class HeaderDetails extends StatelessWidget {
   final ArtItem? item;
 
-  const HeaderDetails({
-    super.key,
-    required this.item,
-  });
+  const HeaderDetails({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
@@ -125,9 +104,9 @@ class HeaderDetails extends StatelessWidget {
               Text(
                 item?.serviceName ?? 'Item not found',
                 style: GoogleFonts.poppins(
-                  fontSize: 22, 
+                  fontSize: 22,
                   fontWeight: FontWeight.w500,
-                  color: Colors.white
+                  color: Colors.white,
                 ),
               ),
               Row(
@@ -135,7 +114,8 @@ class HeaderDetails extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 10,
-                    backgroundImage: (item?.pImgUrl != null && item!.pImgUrl.isNotEmpty)
+                    backgroundImage:
+                        (item?.pImgUrl != null && item!.pImgUrl.isNotEmpty)
                         ? AssetImage(item!.pImgUrl)
                         : null,
                   ),
@@ -143,7 +123,7 @@ class HeaderDetails extends StatelessWidget {
                   Text(
                     item!.artistName,
                     style: GoogleFonts.poppins(
-                      fontSize: 14, 
+                      fontSize: 14,
                       fontWeight: FontWeight.w400,
                       color: const Color(0xFFC5C2D2),
                     ),
@@ -158,7 +138,7 @@ class HeaderDetails extends StatelessWidget {
             width: 50,
           ),
         ],
-      ) 
+      ),
     );
   }
 }
@@ -166,10 +146,7 @@ class HeaderDetails extends StatelessWidget {
 class CardDescription extends StatelessWidget {
   final ArtItem? item;
 
-  const CardDescription ({
-    super.key,
-    required this.item,
-  });
+  const CardDescription({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
@@ -183,7 +160,7 @@ class CardDescription extends StatelessWidget {
             child: Text(
               "Description",
               style: GoogleFonts.poppins(
-                fontSize: 22, 
+                fontSize: 22,
                 fontWeight: FontWeight.w500,
                 color: const Color(0xFFC5C2D2),
               ),
@@ -194,7 +171,7 @@ class CardDescription extends StatelessWidget {
             child: Text(
               item?.description ?? 'No description provided',
               style: GoogleFonts.poppins(
-                fontSize: 15, 
+                fontSize: 15,
                 fontWeight: FontWeight.w300,
                 color: const Color(0xFFC5C2D2),
               ),
@@ -202,17 +179,14 @@ class CardDescription extends StatelessWidget {
           ),
         ],
       ),
-    ); 
+    );
   }
 }
 
 class BuySection extends StatelessWidget {
   final ArtItem? item;
 
-  const BuySection({
-    super.key,
-    required this.item,
-  });
+  const BuySection({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
@@ -229,7 +203,7 @@ class BuySection extends StatelessWidget {
                 Text(
                   "Minimum Price",
                   style: GoogleFonts.poppins(
-                    fontSize: 16, 
+                    fontSize: 16,
                     fontWeight: FontWeight.w400,
                     color: Colors.white,
                   ),
@@ -237,21 +211,18 @@ class BuySection extends StatelessWidget {
                 Text(
                   "₱${item?.price.toString()}" ?? "0",
                   style: GoogleFonts.poppins(
-                    fontSize: 22, 
+                    fontSize: 22,
                     fontWeight: FontWeight.w600,
                     color: const Color(0xFF7A88F2),
                   ),
                 ),
-              ], 
-            ), 
+              ],
+            ),
           ),
           GestureDetector(
             onTap: () => context.push("/search/${item?.id}/details"),
             child: Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 40,
-                vertical: 12,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
               decoration: BoxDecoration(
                 color: const Color(0xFF7A88F2),
                 borderRadius: BorderRadius.circular(8),
@@ -270,6 +241,6 @@ class BuySection extends StatelessWidget {
           ),
         ],
       ),
-    ); 
+    );
   }
 }
