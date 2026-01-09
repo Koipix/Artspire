@@ -25,7 +25,7 @@ class ArtItem {
     required this.customToS,
     required this.artistName,
     required this.imgUrl,
-    required this.pImgUrl, 
+    required this.pImgUrl,
     required this.category,
     required this.status,
     required this.date,
@@ -55,11 +55,7 @@ class ArtItem {
       monetizationRate: json["monetization_rate"],
       commercialRate: json["commercial_rate"],
       rating: json["avgRating"],
-      rateAmount: json["ratingCount"]
+      rateAmount: json["ratingCount"],
     );
   }
 }
-
-
-
-

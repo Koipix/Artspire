@@ -2,7 +2,7 @@ class ChatItem {
   final String username;
   final String latestMsg;
   final String imgPath;
-  final bool isRequested; 
+  final bool isRequested;
 
   ChatItem({
     required this.username,

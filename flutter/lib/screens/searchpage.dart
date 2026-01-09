@@ -13,7 +13,6 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-
   int selectedIndex = 0;
 
   late Future<List<ArtItem>> _itemsFuture;
@@ -23,7 +22,7 @@ class _SearchPageState extends State<SearchPage> {
     super.initState();
     _itemsFuture = ApiService.fetchItems();
   }
-  
+
   void _updateCategory(index) {
     setState(() {
       selectedIndex = index;
@@ -36,25 +35,26 @@ class _SearchPageState extends State<SearchPage> {
       future: _itemsFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(
-            child: CircularProgressIndicator() 
-          );
+          return const Center(child: CircularProgressIndicator());
         }
 
         if (snapshot.hasError) {
-          return Center(
-            child: Text("Something went wrong...")
-          );
+          return Center(child: Text("Something went wrong..."));
         }
 
         final items = snapshot.data!;
 
         List<ArtItem> filteredItems() {
           if (selectedIndex == 0) return items;
-          const categoryTabs = ["Illustration", "Animation", "Emotes", "Rating"];
+          const categoryTabs = [
+            "Illustration",
+            "Animation",
+            "Emotes",
+            "Rating",
+          ];
           return items
-            .where((e) => e.category == categoryTabs[selectedIndex - 1])
-            .toList();
+              .where((e) => e.category == categoryTabs[selectedIndex - 1])
+              .toList();
         }
 
         return Column(
@@ -66,12 +66,10 @@ class _SearchPageState extends State<SearchPage> {
               selectedIndex: selectedIndex,
               onSelected: _updateCategory,
             ),
-            SearchSection(
-              items: filteredItems(),
-            ),
+            SearchSection(items: filteredItems()),
           ],
         );
-      }
+      },
     );
   }
 }
@@ -92,9 +90,14 @@ class CategoryTab extends StatefulWidget {
 
 //_CategoryTabState
 class _CategoryTabState extends State<CategoryTab> {
-  
   //mock data, change later
-  static const List<String> categoryTabs = ["All", "Illustration", "Animation", "Emotes", "Rating"];
+  static const List<String> categoryTabs = [
+    "All",
+    "Illustration",
+    "Animation",
+    "Emotes",
+    "Rating",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -106,25 +109,35 @@ class _CategoryTabState extends State<CategoryTab> {
           children: List.generate(categoryTabs.length, (index) {
             final isSelected = index == widget.selectedIndex;
             return Container(
-              padding: EdgeInsets.only(right: index == categoryTabs.length - 1 ? 0 : 10),
+              padding: EdgeInsets.only(
+                right: index == categoryTabs.length - 1 ? 0 : 10,
+              ),
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 2,
+                ),
                 decoration: isSelected
-                ? BoxDecoration(
-                  color: const Color(0xFF7A88F2),
-                  borderRadius: BorderRadius.circular(6),
-                ) : null,
+                    ? BoxDecoration(
+                        color: const Color(0xFF7A88F2),
+                        borderRadius: BorderRadius.circular(6),
+                      )
+                    : null,
                 child: GestureDetector(
                   onTap: () => widget.onSelected(index),
                   child: Text(
                     categoryTabs[index],
                     style: GoogleFonts.poppins(
                       fontSize: isSelected ? 14 : 13,
-                      fontWeight: isSelected ? FontWeight.w500 : FontWeight.normal,
-                      color: isSelected ? Colors.white : const Color(0xFFC5C2D2),
+                      fontWeight: isSelected
+                          ? FontWeight.w500
+                          : FontWeight.normal,
+                      color: isSelected
+                          ? Colors.white
+                          : const Color(0xFFC5C2D2),
                     ),
                   ),
-                ), 
+                ),
               ),
             );
           }),
@@ -162,6 +175,6 @@ class PageHeader extends StatelessWidget {
           ),
         ],
       ),
-    ); 
+    );
   }
 }
