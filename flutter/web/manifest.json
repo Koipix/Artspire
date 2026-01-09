@@ -1,6 +1,6 @@
 {
-    "name": "artspire",
-    "short_name": "artspire",
+    "name": "Artspire",
+    "short_name": "Artspire",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
