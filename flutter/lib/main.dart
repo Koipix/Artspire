@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import "package:artspire/router.dart";
+import "package:flutter_stripe/flutter_stripe.dart";
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey = '';
+
   runApp(const MyApp());
 }
 

@@ -11,9 +11,9 @@ router.get('/fetchItem', getItems);
 router.post('/api/payment', processPayment);
 
 server.use(cors()); //TODO: remove in production, only for testing
-server.use(router);
 server.use(express.json());
 server.use(express.urlencoded({extended: true}));
+server.use(router);
 
 server.listen(port, '0.0.0.0', () => {
   console.log("Server is running...")

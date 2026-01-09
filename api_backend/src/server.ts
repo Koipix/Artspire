@@ -107,8 +107,9 @@ export const processPayment = async (req: Request, res: Response) => {
     }
 
     return res.status(200).json({ message: "Payment completed succesfully!"});
-  } catch (err) {
-    console.log('err: ' + err);
+  } catch (err: any) {
+    console.log('err: ' + err.message);
+    return res.status(500).json({ error: err.message })
   }
 }
 

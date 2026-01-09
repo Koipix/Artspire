@@ -11,6 +11,8 @@ import 'package:artspire/screens/accountpage.dart';
 import 'package:artspire/screens/confirmation_page.dart';
 import 'package:artspire/screens/personalinformation.dart';
 import 'package:artspire/models/artItem.dart';
+import 'package:artspire/screens/paymentWindow.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 final router = GoRouter(
@@ -100,5 +102,11 @@ final router = GoRouter(
         );
       },
     ),
+    GoRoute(
+      path: '/payment',
+      pageBuilder: (context, state) => const MaterialPage(
+        child: PaymentWindow(),
+      )
+    )
   ],
 );

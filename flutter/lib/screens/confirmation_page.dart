@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import "package:flutter_stripe/flutter_stripe.dart";
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+import 'package:go_router/go_router.dart';
 import 'package:artspire/models/artItem.dart';
 import 'package:artspire/apiService.dart';
-import 'package:intl/intl.dart';
 
 class PurchaseConfirmation extends StatefulWidget {
   PurchaseConfirmation({
@@ -533,26 +535,31 @@ class _AcceptSectionState extends State<AcceptSection> {
             spacing: 10,
             children: [
               Expanded(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 10,
-                  ),
-                  decoration: BoxDecoration(
-                    color: 
+                child: GestureDetector(
+                  onTap: () {
+                    context.push('/payment');
+                  },  
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 10,
+                    ),
+                    decoration: BoxDecoration(
+                      color: 
                       widget.isTermsAccepted
                       ? const Color(0xFF7A88F2)
                       : const Color(0xFF383843),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Center(
-                    child: Text(
-                      widget.isTermsAccepted
-                      ? "Submit request"
-                      : "Accept terms to submit a request",
-                      style: GoogleFonts.poppins(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Center(
+                      child: Text(
+                        widget.isTermsAccepted
+                        ? "Submit request"
+                        : "Accept terms to submit a request",
+                        style: GoogleFonts.poppins(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
