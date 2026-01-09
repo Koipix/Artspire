@@ -52,7 +52,7 @@ const item: ArtItemWithArtist[] = [
 ];
 
 const server = express();
-const stripe = new Stripe("");
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "");
 
 server.get('/', (req: Request, res: Response) => {
   res.send("nyallo!");
