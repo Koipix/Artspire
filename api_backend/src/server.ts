@@ -1,4 +1,5 @@
 import express, { Request, Response } from 'express';
+import Stripe from 'stripe';
 import { ArtItemWithArtist } from './models/ArtItem';
 
 const item: ArtItemWithArtist[] = [  
@@ -51,6 +52,7 @@ const item: ArtItemWithArtist[] = [
 ];
 
 const server = express();
+const stripe = new Stripe("");
 
 server.get('/', (req: Request, res: Response) => {
   res.send("nyallo!");
@@ -85,6 +87,28 @@ export const getItemById = async (req: Request, res: Response) => {
   } catch (err) {
     console.error("err:", err);
     res.status(500).json({ message: 'Internal Server Error' });
+  }
+}
+
+export const processPayment = async (req: Request, res: Response) => {
+  const {body} = req;
+  try {
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: body?.amount,
+      currency: body?.currency,
+    });
+    
+    if (paymentIntent.client_secret) {
+      console.log("Payment created, sending request to frontend");
+      return res.status(200).json({
+        message: "Plase confirm your payment",
+        client_secret: paymentIntent.client_secret,
+      });
+    }
+
+    return res.status(200).json({ message: "Payment completed succesfully!"});
+  } catch (err) {
+    console.log('err: ' + err);
   }
 }
 
