@@ -10,13 +10,39 @@ import 'package:artspire/screens/searchpage_card.dart';
 import 'package:artspire/screens/accountpage.dart';
 import 'package:artspire/screens/confirmation_page.dart';
 import 'package:artspire/screens/personalinformation.dart';
+import 'package:artspire/screens/onboardingpage.dart';
+import 'package:artspire/screens/welcomepage.dart';
+import 'package:artspire/screens/loginpage.dart';
+import 'package:artspire/screens/signuppage.dart';
 import 'package:artspire/models/artItem.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 final router = GoRouter(
-  initialLocation: '/home',
+  initialLocation: '/onboarding',
   routes: [
+    // Onboarding screen (splash + sliders)
+    GoRoute(
+      path: '/onboarding',
+      pageBuilder: (context, state) => const NoTransitionPage(child: OnboardingPage()),
+    ),
+    
+    // Welcome screen
+    GoRoute(
+      path: '/',
+      pageBuilder: (context, state) => const NoTransitionPage(child: WelcomePage()),
+    ),
+    
+    // Auth routes
+    GoRoute(
+      path: '/login',
+      pageBuilder: (context, state) => const NoTransitionPage(child: LoginPage()),
+    ),
+    GoRoute(
+      path: '/signup',
+      pageBuilder: (context, state) => const NoTransitionPage(child: SignupPage()),
+    ),
+    
     ShellRoute(
       builder: (context, state, child) => ShellPage(child: child),
       routes: [
