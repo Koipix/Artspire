@@ -51,10 +51,10 @@ class ArtItem {
       status: json["status"],
       date: json["created_at"],
       isNewOffer: json["is_new_offer"],
-      price: (json["price"] as num).toDouble(),
-      monetizationRate: (json["monetization_rate"] as num).toDouble(),
-      commercialRate: (json["commercial_rate"] as num).toDouble(),
-      rating: (json["avgRating"] as num).toDouble(),
+      price: json["price"],
+      monetizationRate: json["monetization_rate"],
+      commercialRate: json["commercial_rate"],
+      rating: json["avgRating"],
       rateAmount: json["ratingCount"],
     );
   }

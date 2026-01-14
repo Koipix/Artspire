@@ -46,8 +46,7 @@ class _SearchPageState extends State<SearchPage> {
         }
 
         if (snapshot.hasError) {
-          print("API Error: ${snapshot.error}");
-          return Center(child: Text("Something went wrong: ${snapshot.error}"));
+          return Center(child: Text("Something went wrong..."));
         }
 
         final items = snapshot.data!;

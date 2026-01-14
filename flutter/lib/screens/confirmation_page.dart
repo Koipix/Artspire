@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import "package:flutter_stripe/flutter_stripe.dart";
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:go_router/go_router.dart';
 import 'package:artspire/models/artItem.dart';
 import 'package:artspire/apiService.dart';
-import 'package:artspire/screens/paymentWindow.dart';
 
 class PurchaseConfirmation extends StatefulWidget {
   PurchaseConfirmation({super.key, required this.id, required this.item});
@@ -66,7 +66,6 @@ class _PurchaseConfirmationState extends State<PurchaseConfirmation> {
             AcceptSection(
               artistName: widget.item.artistName,
               isTermsAccepted: isTermsAccepted,
-              totalPrice: _totalPrice,
               onAccepted: (val) {
                 setState(() {
                   isTermsAccepted = val;
@@ -461,13 +460,11 @@ class AcceptSection extends StatefulWidget {
     super.key,
     required this.artistName,
     required this.isTermsAccepted,
-    required this.totalPrice,
     required this.onAccepted,
   });
 
   final String artistName;
   final bool isTermsAccepted;
-  final double totalPrice;
   final void Function(bool) onAccepted;
 
   State<AcceptSection> createState() => _AcceptSectionState();
@@ -510,24 +507,25 @@ class _AcceptSectionState extends State<AcceptSection> {
             children: [
               Expanded(
                 child: GestureDetector(
-                  onTap: widget.isTermsAccepted
-                      ? () => PaymentService.makePayment(context, widget.totalPrice)
-                      : null,
+                  onTap: () {
+                    context.push('/payment');
+                  },  
                   child: Container(
                     padding: const EdgeInsets.symmetric(
                       vertical: 10,
                     ),
                     decoration: BoxDecoration(
-                      color: widget.isTermsAccepted
-                          ? const Color(0xFF7A88F2)
-                          : const Color(0xFF383843),
+                      color: 
+                      widget.isTermsAccepted
+                      ? const Color(0xFF7A88F2)
+                      : const Color(0xFF383843),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Center(
                       child: Text(
                         widget.isTermsAccepted
-                            ? "Submit request"
-                            : "Accept terms to submit a request",
+                        ? "Submit request"
+                        : "Accept terms to submit a request",
                         style: GoogleFonts.poppins(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
